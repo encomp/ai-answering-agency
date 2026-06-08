@@ -1,132 +1,161 @@
-# Agency Website Spec v2
+# Señal Flow — Agency Website Spec
 
 ## Brand
 
-Name validation status:
-- Hatch — strong candidate, some AI/brand saturation
-- Slate — nice imagery, some construction AI overlap
-- Beacon — existing enterprise AI brands
-- Rise — cleaner search footprint so far
-- Meridian — mostly financial/CRM AI
-- Signal — strong AI brand in reputation/monitoring
+Name: **Señal Flow**
+Tagline: "AI Marketing Systems"
+Voice: "Tu señal, amplificada." / "Your signal, amplified."
 
-Working name for copy drafts: Hatch
-Tagline direction: "AI answering and quoting for garage door contractors."
+Positioning: Not a social media agency. An AI marketing systems provider that builds conversion infrastructure for local businesses.
 
-Tone: professional SaaS. Clear, confident, no fluff.
+Colors:
+- Primary: Burnt Signal #dc4a1a
+- Secondary: Amber Pulse #f97316
+- Accent: Golden Spark #fbbf24
+- Dark: Deep Umber #1a0c04 / Warm Black #2a1a0a
+- Light: Cream Wash #fdf6ee
+- Text: slate 900 on light, Cream Wash on dark
+
+Typography:
+- Headings: Helvetica Neue Bold 800, tight tracking
+- Body: Helvetica Neue Regular 400, comfortable line height
+- Labels: tracked caps
 
 ## Look and feel
 
-Locked:
-- Professional SaaS feel
-- Typography: Inter, bold headings, readable body
-- Clean surfaces
+- Warm light dominates: Cream Wash background
+- Dark sections with Warm Black for contrast and premium feel
+- Burnt orange as the primary CTA and accent
+- Typography-forward, minimal decoration
+- Subtle motion: loading fade, hover lift, animated counters
+- Real screenshots of client systems, not stock photos
+- Bilingual from day one (EN/ES)
 
-Color direction:
-- Primary dark: slate 900
-- Background: white / slate 50
-- CTA: warm accent
-- Secondary: sky blue for trust/automation
-- Success: green
-
-CTAs may also use dark slate with orange hover if that feels more SaaS.
-
-## Pages stack
+## Pages
 
 1. Home
-2. How It Works
-3. What You Get
-4. Pilot
-5. Instant Quote Demo
-6. Proof / Case Studies
-7. Contact
+2. Systems
+3. Bilingual
+4. Case Study — Garage Door AI
+5. Pilot
+6. Contact
 
 ## CTA flow
 
-Primary: "See a live quote demo" → email capture → demo + nurture
-Secondary: "Request a pilot slot" → calendar
-Tertiary: "Watch a recorded walkthrough" → Loom → nurture
-
-Rules:
-- No hard pricing on home.
-- Quote demo is the main conversion.
-- Demo viewers enter nurture if not booked within 24h.
+Primary: "See a live demo" → email capture → garage door quote demo + nurture
+Secondary: "Start your 30-day trial" → calendar / intake form
+Tertiary: "Watch a walkthrough" → Loom → nurture
 
 ## Copy outline
 
 ### Home
-- H1: "More repair leads answered while you're on a job."
-- Sub: "AI voice agent + instant quote tool for garage door contractors."
-- Proof bar: "32% response rate on first touch"
-- CTA: "See a live quote demo"
-- Bullets:
-  - 24/7 answering in a voice that sounds like your shop
-  - Instant repair estimate on a simple web form
-  - First-call close instead of first-call voicemail
 
-### How It Works
-- Step 1: Hand off after-hours/missed calls
-- Step 2: AI books estimate or creates quote
-- Step 3: Your team closes while traffic is hot
-- Visual: 3-column number flow
+H1: "More repair leads answered while you're on a job."
+Sub: "AI voice agent + instant quote tool built for garage door contractors."
+Proof: "32% response rate on first touch"
+CTA: "See a live quote demo"
 
-### What You Get
-- New local number or forwarding from existing line
-- AI voice script tailored to your shop tone
-- Instant quote form with your pricing baseline
-- CRM/SMS handoff to your existing tools
-- Basic call and quote analytics
+This opens with a specific, high-value outcome and positions the garage door vertical as the flagship proof point.
 
-This closes the "what am I actually buying?" gap.
+### Systems
+
+H1: "AI Marketing Systems"
+Sub: "Social media, lead capture, and automation — built as one conversion infrastructure."
+
+Three columns:
+- Social Media Engine
+  - 30 AI posts/month across 2 platforms
+  - Comment-to-DM automation
+  - AI lead magnets
+- Conversion Layer
+  - Missed-call text-back
+  - Automated appointment booking
+  - Review request drip
+- Bilingual Reach
+  - English + Spanish content
+  - Spanish-language outreach
+  - Localized lead magnets
+
+### Bilingual (featured capability)
+
+H1: "Your signal, amplified."
+Sub: "EN/ES from day one. Because your customers don't just speak one language — and neither do we."
+
+Bullets:
+- Social posts in both languages
+- DM/comment automation in Spanish
+- Localized lead magnets and landing pages
+- Outreach to underserved local business segments
+
+This is the competitive moat. Prove it before competitors claim it.
+
+### Case Study — Garage Door AI
+
+H1: "How a garage door shop turned after-hours calls into booked jobs."
+Sub: "AI voice agent + instant quote tool — built, tested, and ready to deploy."
+
+Metrics table:
+- Calls answered: tracked and reported
+- Quotes created: tracked and reported
+- Jobs closed: tracked and reported
+- Revenue retained: tracked and reported
+
+Note: "Voice script customized to shop tone. CRM/SMS handoff to existing tools."
+
+This is the portfolio piece that converts Tier 2/3 clients.
 
 ### Pilot
-- H1: "Try it for one week, risk-free."
-- Includes: setup, voice script, quote page, basic analytics
-- Outcome: "See how many missed calls become bookable jobs."
-- CTA: "Request a pilot slot"
-- Form: name, business name, phone, city, current call volume estimate
-- What happens next: "Setup in 24h. No credit card."
 
-### Instant Quote Demo
-- Interactive: select issue type, door style, urgency
-- Output: formatted quote + estimated job value
-- Disclaimer: "Demo prices. Actual quotes vary."
+Lock the 30-day free trial framing per the Señal Flow blueprint:
 
-### Proof / Case Studies
-- Pattern: "See how [city] garage door shops run after-hours leads through [brand]"
-- Include tables: calls answered, quotes created, jobs closed, rev retained
-- Per-case note on voice customization and escalation rule used
+H1: "30 days. One location. Zero risk."
+Includes: setup, voice script, quote page, call analytics, basic social media
+What happens next: "Setup within 24 hours. No credit card."
+
+Form: name, business name, phone, city, current system
+CTA: "Request pilot slot"
 
 ### Contact
-- Purpose: low-friction pilot request, not general inquiry
-- Output: helpdesk/CRM ticket
-- Optional: direct SMS for warm inquiries only
+
+Low-friction pilot request, not general inquiry.
+
+Optional: direct SMS link for warm inquiries only.
 
 ## Post-pilot positioning
-- After pilot: monthly pricing with clear tiers
-- Keep open to contract vs pay-per-call
-- No surprise fees, cancel anytime
 
-## City / local SEO
-- /phoenix/garage-door-ai-answering
-- /dallas-fort-worth/garage-door-ai-answering
-- Each page: city-specific angle + weather tie-in
+After 30-day trial:
+- Tier 1 Social Media Engine: $500/month
+- Tier 2 Conversion System: $1,000/month
+- Tier 3 Full Growth System: $1,500-$2,000/month
+- Cancel anytime, no surprise fees
+
+## SEO / local pages
+
+- /fremont/ai-marketing
+- /oakland/ai-marketing
+- /san-jose/ai-marketing
+- Pattern: /city/ai-marketing-systems
+- Each page: city-specific stat + local phone mention + bilingual note
 
 ## Risk disclosures
+
 - Calls recorded for quality and training
-- AI identifies itself as automated assistant
+- AI identifies itself as automated assistant at start of each call
 - Compliant with FCC/CTIA voice rules
 - No cold outreach without consent
 
 ## Success metrics displayed
+
 - Answer rate: 80%+
 - Quote completion: 40%+
 - Booked job rate: 20%+
-- Revenue retained from missed calls: estimated range
+- Follower growth: tracked monthly
+- Engagement rate: reported per platform
 
 ## Admin / ops
+
 - Host: Vercel or Cloudflare Pages
-- Form: ConvertKit/Loops/Resend
+- Form: ConvertKit / Loops / Resend
 - Demo page: static or Edge Function quote calculator
 - Tracking: GA4 + one CTA event per page
-- Backlog: simple admin dashboard for call leads and status
+- Backlog: simple admin dashboard for leads and status
