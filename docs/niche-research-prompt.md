@@ -106,12 +106,19 @@ requirements, property damage, health scares, financial loss). Rate urgency
 weak → extreme. This determines ease of sale.
 
 ### 5. TAM & SMS-Reachable Market
-- National TAM (business count, US) from live sources with URLs; directory counts in
-  2-3 major cities; expansion potential.
+- MAP TO NAICS: identify the narrowest 6-digit NAICS code for the niche (see the
+  naics-mapping reference). CLEAN code = exact count. SLICE (niche ⊂ code) = code
+  total is the CEILING, directory counts are the FLOOR — report both. MULTI sums
+  allowed, flag overlap.
+- PULL COUNTS (Census CBP+NES): TAM = CBP (employer) + NES (nonemployer) — disjoint
+  populations, additive; report the split. Suppressed cells fall back to state level
+  with a flag — never silent zeros. Pin data year + NAICS vintage (2022). Use the
+  cbp_lookup script: `python3 scripts/cbp_lookup.py --naics <code> --geo us,cbsa:19100 --nes`.
 - Textable % (use Section 6's test plan when available; otherwise the best estimate,
   tagged [VERIFIED]/[ESTIMATE]).
 - SMS-REACHABLE UNIVERSE = TAM × textable %. Always report both inputs AND the product.
-- TIER TABLE (the operative outbound score; computed at national footprint):
+- TIER TABLE (unchanged thresholds — calibrated on directory-style populations, which
+  CBP+NES restores; computed at national footprint):
     <8,000        RED     outbound isn't a real channel — ads-only niche
     8,000–12,500  YELLOW  workable only if ads carry the load; outbound is a light bonus
     12,500–25,000 GREEN   sustainable outbound
@@ -129,7 +136,8 @@ weak → extreme. This determines ease of sale.
   meaningfully higher). When SEÑAL FLOW is on, weight Spanish-dense metros (e.g.,
   Miami, Houston, Los Angeles, DFW, Phoenix) in the ranking. The tier table is
   computed nationally; the metro pick is where the first 12-18 months of campaign
-  actually runs.
+  actually runs. Use official CBSA (OMB) definitions for all metro counts — never
+  hand-picked counties.
 
 ### 6. Outbound & SMS Feasibility (Textability Test)
 - Lead sources (Google Maps, directories, trade lists).
