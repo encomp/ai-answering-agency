@@ -55,13 +55,20 @@ instant quoting, or storm-response speed** — the open lane. Generalist agencie
 - **Catastrophe response**: insurers/auctions route volume to cat firms (Hi-Tech model).
 Urgency: **extreme inside storm windows, low otherwise** — the sale happens in the window.
 
-## 5. TAM & SMS-Reachable Market
+### 5. TAM & SMS-Reachable Market
 
-- National PDR-specific business count: **[UNVERIFIED — ESTIMATE 8,000–15,000]** (subset of IBISWorld
-  Auto Body Shops industry 1694 — count paywalled this run). Solo techs are under-listed → scrape-able
-  universe < true TAM. Query to pin: `IBISWorld auto body shops number of businesses US`.
-- SMS-REACHABLE UNIVERSE = TAM × textable%: 8k × 55% ≈ **4.4k (RED)** to 15k × 55% ≈ **8.2k (YELLOW)**.
-- TIER: **RED/YELLOW on steady-state math** — with an important caveat below.
+- NAICS MAPPING: PDR has no own code — primary **811121** (Auto Body, Paint & Interior Repair),
+  secondary **811198** (All Other Automotive Repair & Maintenance; PDR-only shops may classify here);
+  811120 = 5-digit parent (includes glass). [VERIFIED: CBP 2022]
+- EMPLOYER CEILINGS (CBP 2022, exact via cbp_lookup): 811121 = **34,665 US / 734 DFW / 370 Denver**;
+  811198 = **5,091 US / 114 DFW / 55 Denver**; 811120 parent = 41,698 US. PDR is a SLICE of these —
+  the slice factor is unknown: CBP is the ceiling, directory counts are the floor.
+- NES: 6-digit NES unpublished for 81112x/811198 (Census aggregates) — solo PDR techs are invisible
+  to Census; directories are the only way to count the nonemployer slice.
+- SMS-REACHABLE UNIVERSE: even a generous 20–30% PDR share of 811121 → ~7–10k employer businesses →
+  × ~55% textable ≈ **3.9–5.7k (RED/YELLOW)**. The earlier 8–15k estimate was too optimistic — the
+  verified ceiling for ALL body shops is 34,665, and PDR is a slice.
+- TIER: **RED/YELLOW on steady-state math** — the burst-demand override below is the deciding frame.
 - **Burst-demand override**: the tier table assumes continuous monthly drip outbound. PDR demand is
   event-driven: a storm produces 100+ urgent leads in days across a metro. The list is consumed per
   storm, not per month — runway math understates viability. What matters instead: storm frequency in
@@ -97,7 +104,7 @@ Same angle, better system — exactly the playbook.
 | Cash+ (hail job $1–5k × 60–70% gross [EST]) | 4 | Passes at mid-high end |
 | Cash+ (dealer contract ~$600/car recurring) | 4 | Passes as baseline |
 | Urgency | 5 | Extreme in storm windows |
-| TAM (8–15k [EST]) | 3 | Below the 25k comfort line |
+| TAM (ceiling 34,665 [VERIFIED]; PDR slice unknown, est. 7–10k employer) | 2–3 | Steady-state RED/YEL; burst-demand model decides |
 | Ad proof | 3 | Seasonal/sporadic [UNVERIFIED run dates] |
 | Textability (50–60% [EST]) | 4 | High, unverified |
 
@@ -107,15 +114,17 @@ steady-state tier table doesn't capture it. Entry offer: **storm-response AI ans
 for DFW/hail-alley PDR shops, dealer reconditioning contracts as the counter-seasonal baseline.
 Pricing anchor: one hail job $1–5k; 1–3 jobs/month justify the client's $2.5k monthly spend.
 
-**Next 3 actions:** ① Veriphone sample (150 DFW PDR leads → % mobile) — kills the biggest unknown;
-② Google Maps directory counts: DFW + Denver PDR businesses — pins TAM/tier; ③ Meta Ads Library check:
-`hail damage repair` advertisers + run dates (human/browser step).
+**Next 3 actions:** ① Google Maps directory count of PDR businesses (DFW first, then Denver) — the
+DECISIVE number now: the CBP ceiling is verified but the PDR slice factor is unknown, and solo techs
+are invisible to Census (NES unpublished at 6-digit); ② Veriphone sample (150 DFW PDR leads → % mobile);
+③ Meta Ads Library check: `hail damage repair` advertisers + run dates (human/browser step).
 
 ## 9. Comparison Table
 Single-niche run — see `docs/niche-brainstorm.md` for cross-niche comparison (PDR was not on the
 original brainstorm shortlist; this deep dive was a deliberate addition).
 
 ## PROOF GAPS
+- Google Maps directory count of PDR businesses (DFW first) — the decisive slice factor (Apify/Skyline task).
 - IBISWorld Auto Body Shops (1694) business count — paywalled; query: `ibisworld auto body shops number of businesses`.
 - DFW + Denver PDR directory counts — Google Maps manual/Apify.
 - Veriphone line-type sample (150 leads, DFW) — Skyline task spec.
