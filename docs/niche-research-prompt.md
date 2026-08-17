@@ -55,23 +55,24 @@ monthly spend with the agency (target ≈ $2,500) — after the niche's typical 
   people craters reply rates and climbs spam complaints, the actual cancellation driver.
 
 ## MODE A — BRAINSTORM (when NICHE is blank)
-1. Generate 10-14 candidate niches from underserved categories (foundation repair,
-   basement waterproofing, fire safety compliance, environmental testing, specialty
-   waste, men's health clinics, specialty trades, regulatory-driven services...).
-   Mix across: home/property, health, compliance, trades, commercial.
-2. For each: one-line definition, who it serves, why demand is forced (trigger),
-   typical ticket size, typical gross margin (high/medium/low + why — service-heavy
-   beats materials-heavy at the same ticket size), expected textability
-   (high/medium/low + why — owner-operator trades often list mobile numbers;
-   office/compliance businesses lean landline/VoIP; franchises route to call centers),
-   and 1-5 scores on the CRITERIA.
-3. Drop any that fail the CASH-POSITIVE TEST, URGENCY, or land a RED reachable-universe
-   tier. Keep the best 5.
-4. Output: scorecard table (niche | underserved | cash+ (job × margin) | urgency |
-   TAM | ad proof | reachable tier | total) + a short "why these 5" note for each.
-5. For each finalist, add a PROOF CHECKLIST: Meta Ads Library searches, Google
-   searches, directory counts, AND a Veriphone line-type sample test (scrape 100-200
-   leads in one city → verify → measure actual % mobile) to confirm the tier.
+1. BUILD THE POOL: run the CBP screener (`scripts/niche_screener.py`: curated sectors,
+   5k–60k window, owner-operated filter, band flags, residual tags, NES flags, DFW +
+   hail-alley columns). Where the screener is unavailable, generate 10-14 candidates
+   from underserved categories and tag all TAM [ESTIMATE].
+2. INTERPRET each code: NAICS label → human niche framing (who it serves, typical
+   ticket); residual buckets MUST be narrowed to 1-3 named niches (their ESTAB is a
+   CEILING — size via directories); flag CLEAN vs SLICE.
+3. SCORE 1-5 on the six CRITERIA — underserved via the calibrated agency-competitor
+   probe ("[niche] marketing agency": count dedicated agencies, note "12 best" listicles;
+   sparse = high score), cash-positive (job × margin), urgency, TAM (exact from CBP +
+   band flag), ad proof, textability (structure + owner-operated share).
+4. DIVERSITY: enforce top 3 per sector + up to 2 wildcards. Drop failures (cash+,
+   urgency, RED tier).
+5. OUTPUT: scorecard (niche | sector | underserved | cash+ | urgency | TAM+band |
+   ad proof | textable | total) + top 8-10 with a short "why" note for each + ranked
+   appendix of the rest.
+6. PROOF CHECKLISTS for the top 5 finalists: Meta Ads Library searches, directory
+   counts (sizes SLICE codes), Veriphone line-type sample (100-200 leads/city).
 
 ## MODE B — DEEP RESEARCH (when NICHE is named)
 Produce the full Niche Research Document. Use live web search for every section;
