@@ -72,11 +72,13 @@ def _get(url: str, timeout: int = 60) -> bytes:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.read()
     except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", "replace")[:200]
+        body = e.read().decode("utf-8", "replace")[:300]
         if "Missing Key" in body:
             raise RuntimeError("Census API needs a key: add CENSUS_API_KEY=<key> to ~/.hermes/.env "
                                "(free: https://api.census.gov/data/key_signup.html)")
         raise RuntimeError(f"HTTP {e.code}: {body}")
+    except urllib.error.URLError as e:
+        raise RuntimeError(f"URL error: {e.reason}")
 
 def _bulk_text(kind: str) -> str:
     """Download (cached) a bulk zip and return the txt as a string."""
@@ -91,14 +93,29 @@ def _bulk_text(kind: str) -> str:
         name = next(n for n in z.namelist() if n.endswith((".txt", ".csv")))
         return z.read(name).decode("utf-8", "replace")
 
+def api_geo(g: str) -> str:
+    """Map CLI geo tokens to Census API for= values."""
+    if g == "us":
+        return "us:1"
+    if g.startswith("cbsa:"):
+        return "metropolitan statistical area:" + g.split(":")[1]
+    return g  # state:XX passes through
+
 def api_count(dataset: str, naics: str, geo: str) -> dict:
     """dataset: 'cbp' | 'nonemployer'; geo: us:1 | state:XX | metropolitan statistical area:CODE"""
     key = env_key()
     if not key:
         raise RuntimeError("API path requires CENSUS_API_KEY (see --help). Use bulk path or add the key.")
-    var = "NAICS2022"
-    url = f"https://api.census.gov/data/{YEAR}/{dataset}?get={var},ESTAB&for={geo}&{var}={naics}&key={key}"
-    data = json.loads(_get(url))
+    var = {"cbp": "NAICS2017", "nonemp": "NAICS2022"}[dataset]
+    estab_var = {"cbp": "ESTAB", "nonemp": "NESTAB"}[dataset]
+    # CBP API labels NAICS2017 for the 2022 reference year; NES API uses NAICS2022 + NESTAB.
+    # Neither API serves MSA geography — CBSA counts come from the bulk MSA files.
+    url = f"https://api.census.gov/data/{YEAR}/{dataset}?get={var},{estab_var}&for={geo}&{var}={naics}&key={key}"
+    raw = _get(url)
+    if not raw.strip():  # HTTP 204 — 6-digit detail not published for this NAICS
+        return {"estab": None, "suppressed": True,
+                "note": "6-digit NES not published for this NAICS (Census aggregates to 4-digit)"}
+    data = json.loads(raw)
     if len(data) < 2:
         return {"estab": None, "suppressed": True}
     try:
@@ -150,12 +167,11 @@ def bulk_nes(naics: str, geos: dict) -> dict:
         if (r.get("NAICS") or "").strip() == n:
             rows[r.get("ST").strip()] = _nes_estab(r)
     if not rows:
-        # check deepest available level
-        deepest = max({(r.get("NAICS") or "").strip() for r in csv.DictReader(io.StringIO(text))
-                       if (r.get("NAICS") or "").strip().startswith(n[:4])} | {""}, key=len)
+        # NES detail is industry-dependent: some 6-digit codes publish, others aggregate to 4-digit.
+        # NEVER proxy the 4-digit parent into a 6-digit TAM.
         for g in geos:
             out[g] = {"estab": None, "suppressed": True,
-                      "note": f"NES bulk detail tops out at {deepest or '4-digit'} for NAICS {n[:4]}; 6-digit NES requires CENSUS_API_KEY"}
+                      "note": f"6-digit NES not published for NAICS {n[:4]}xx (Census aggregates to 4-digit; NES excluded from TAM)"}
         return out
     if "us" in geos:
         vals = [v for v in rows.values() if v is not None]
@@ -196,13 +212,20 @@ def main():
 
     geos = [g.strip() for g in args.geo.split(",") if g.strip()]
     label = {"us": "United States"}
-    cbp = bulk_cbp(args.naics, {g: None for g in geos}) if not args.api else {}
-    if args.api or args.nes:
-        cbp = {g: api_count("cbp", args.naics, {"us": "us:1"}.get(g, g if ":" in g else "us:1")) for g in geos} \
-              if args.api else cbp
-    nes = bulk_nes(args.naics, {g: None for g in geos}) if args.nes else {g: {"estab": None, "suppressed": False} for g in geos}
-    if args.nes and args.api:
-        nes = {g: api_count("nonemployer", args.naics, {"us": "us:1"}.get(g, g if ":" in g else "us:1")) for g in geos}
+    # API path: us/state via API; cbsa via bulk MSA files (the API has no MSA hierarchy).
+    if args.api:
+        cbp = {g: (api_count("cbp", args.naics, api_geo(g)) if not g.startswith("cbsa:")
+                   else bulk_cbp(args.naics, {g: None})[g]) for g in geos}
+    else:
+        cbp = bulk_cbp(args.naics, {g: None for g in geos})
+    if args.nes:
+        if args.api:
+            nes = {g: (api_count("nonemp", args.naics, api_geo(g)) if not g.startswith("cbsa:")
+                       else bulk_nes(args.naics, {g: None})[g]) for g in geos}
+        else:
+            nes = bulk_nes(args.naics, {g: None for g in geos})
+    else:
+        nes = {g: {"estab": None, "suppressed": False} for g in geos}
 
     result = {"naics": args.naics, "year": args.year, "naics_vintage": NAICS_VINTAGE,
               "geographies": {}}

@@ -34,8 +34,11 @@ and bulk-file quirks). Map each niche to the NARROWEST 6-digit NAICS code.
 ## Rules
 
 1. **Prefer the narrowest code that fits.** CLEAN → exact. SLICE → ceiling + directory floor.
-2. **Never proxy 4-digit for 6-digit NES** — NES bulk files top out at 4-digit for many
-   industries (e.g., 2383 = ALL building finishing, not tile). 6-digit NES requires the API key.
+2. **Never proxy 4-digit for 6-digit NES** — NES 6-digit publication is INDUSTRY-DEPENDENT: many
+   trade codes (2383xx tile, 562991 septic, 561710 pest, 81112x auto body) are unpublished at
+   6-digit (aggregated to 4-digit for disclosure); others publish fully (e.g., 812113 = 280,875).
+   When 6-digit NES is unpublished: TAM = employer-only (a FLOOR) + flag it; use directory counts
+   (Google Maps) as the nonemployer proxy. Never mix the 4-digit parent into a 6-digit TAM.
 3. **TAM = CBP + NES** — disjoint populations (employer vs no-employees), additive. Report the split.
 4. **Pin year + NAICS vintage** (2022). The 2027 NAICS revision will shift codes — re-verify mappings then.
 5. **Suppressed cells** ('N','D','G','H','J') → state-level fallback with provenance flag; never silent zero.
