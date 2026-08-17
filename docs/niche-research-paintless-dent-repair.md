@@ -20,8 +20,12 @@ dealer reconditioning ≈ **$600/car** average [VERIFIED: dalepollak.com, dealer
 Gross margins: structurally high (labor-only), but hail-chaser ops report slim net (20–25% of gross
 [VERIFIED: pdrsecrets.com — net-margin caution]) — materials aren't the cost, travel/coordination are.
 Seasonality: hail-driven demand bursts May–Aug; **500,000+ hail property claims/year US**
-[VERIFIED: capeanalytics.com]; **Texas is the #1 hail-loss state ($338.6M/yr), Colorado #2 ($151M)**
-[VERIFIED: ypapublicadjusters.com].
+[VERIFIED: capeanalytics.com]. Hail-claim leaders [VERIFIED]: NICB top-5 (2017–19) = **Texas
+(637,977 claims), Colorado (380,066), Nebraska (161,374), Minnesota (150,673), Illinois (150,416)**
+[nicb.org]; III 2022 major-hail-event leaders = TX (458), NE (399), MN (387), KS (289) [iii.org];
+hail alley = OK, KS, much of NE, eastern CO, North/West TX, western IA [expressnews.com];
+mountain states (CO, WY, NM) high hail frequency [servpro.com]; SE prevalence in GA/SC analyses
+[geographyrealm.com].
 
 ## 2. Client Competitors (advertisers already spending)
 
@@ -62,8 +66,10 @@ Urgency: **extreme inside storm windows, low otherwise** — the sale happens in
   event-driven: a storm produces 100+ urgent leads in days across a metro. The list is consumed per
   storm, not per month — runway math understates viability. What matters instead: storm frequency in
   target metros, mobile reachability (to text fast), and a dealer-contract baseline for the dry months.
-- LAUNCH METROS: **DFW (default — TX is the #1 hail state)**, Denver (#2), Houston, OKC/KS corridor,
-  St. Louis. All hail-alley; DFW + Houston also match the operator's Texas base.
+- LAUNCH METROS (ranked by verified hail-claim volume): **DFW (TX #1)**; **Denver (CO #2)**;
+  **Omaha (NE #3)**; **Minneapolis (MN #4)**; **Chicago/IL (#5)**; plus Oklahoma City (OK),
+  Wichita/Kansas City (KS/MO), St. Louis (MO). DFW + Houston match the operator's Texas base.
+  Secondary: NM/WY/SD/IA corridor; SE outlier: GA/SC hail prevalence. All [VERIFIED: NICB/III].
 
 ## 6. Outbound & SMS Feasibility (Textability Test)
 
