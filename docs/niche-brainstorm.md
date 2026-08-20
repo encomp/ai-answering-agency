@@ -25,21 +25,21 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] probe pendi
 
 ## Top 8–10 scorecards
 
-### 1. Machinery repair
+### 1. 🥇 Machinery repair
 • Niche: Commercial & industrial machinery repair (811310)
   * In plain English: Independent shops that fix the machines other businesses depend on — factory equipment, forklifts, construction/ag machinery, commercial kitchen gear. When a production line or forklift dies, it's an emergency call, not a nice-to-have.
 • TAM [VERIFIED]: 22,433 employer (DFW 370 · Hail10 2,080); NES unpublished → employer floor
 • Band: 🟢 GREEN
 • The case: The only finalist strong on every axis — B2B cash+ 4–5 ($500–10k tickets × 45–60% margins), urgency 4 (downtime), underserved 3–4 (agencies chase dealers/OEMs, not repair shops), ~12.3k textable runway. Wedge: after-hours emergency dispatch AI + instant B2B quoting.
 
-### 2. Finish carpentry
+### 2. 🥈 Finish carpentry
 • Niche: Finish carpentry contractors (238350)
   * In plain English: The "visible" carpenters — custom trim, baseboards, crown molding, doors, staircases, built-in cabinets and millwork. Distinct from rough framing; the detailed finish work that shows. Clients: GCs + homeowners with taste and budget.
 • TAM [VERIFIED]: 32,169 employer (DFW 372 · Hail10 3,282); NES unpublished
 • Band: 🟢 GREEN+
 • The case: Biggest steady TAM of the finalists (~17.7k textable), cash+ 4 ($2–10k jobs × 40–50%), and the dedicated field is thin — generalists with landing pages + 1 DFW niche firm (Kinetic Curve). Wedge: instant quote + call-capture on GC-sourced work.
 
-### 3. Auto glass
+### 3. 🥉 Auto glass
 • Niche: Automotive glass replacement shops (811122)
   * In plain English: Shops (often mobile — they come to you) that replace windshields and side/rear windows on cars. Insurance-driven, hail volume, ADAS-calibration upsell. Cracked windshield = safety risk + tickets = urgent.
 • TAM [VERIFIED]: 7,033 employer (DFW 100 · Hail10 588); NES unpublished
