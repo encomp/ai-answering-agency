@@ -1,66 +1,125 @@
-# Niche Brainstorm — Scorecard & Top 5 (US) — VERIFIED RE-RUN
+# Niche Brainstorm — Run 3 (CBP-driven + calibrated probes)
 
-Run: `niche-research` skill, brainstorm mode, SEÑAL_FLOW off, PRICING TARGET $2,500/mo, DEPTH: quick.
-Execution note: native web tools were down (gateway env missing FIRECRAWL_API_KEY); this run used the
-Firecrawl search API directly with the key from `~/.hermes/.env` (HTTP 200 verified).
-Tags: [VERIFIED] = live source found this run (URL cited) · [ESTIMATE] = domain reasoning, unverified.
+Run: `niche-research` skill, brainstorm mode, data-driven screener (`scripts/niche_screener.py`, CBP 2022) + Firecrawl agency-density probe (10 queries, 2026-08). SEÑAL_FLOW off. PRICING TARGET $2,500/mo.
+Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] probe pending.
 
-## Scorecard (12 candidates — scores updated with verified TAM)
+## Method
+1. Screener: curated sectors × 5k–60k window → 39 candidates with exact CBP 2022 counts, band flags, NES availability, DFW + Hail10 CBSA columns.
+2. Excluded already-deep-researched: PDR (811121/811198), house painters (238320), garage door (238290), foundation (238190 — prior #1, deep dive pending).
+3. Calibrated agency probe on 10 new candidates (`"[niche] marketing agency"`; anchors: HVAC/roofing/plumbing = saturated w/ listicles; tile/septic = thin 2–4; PDR = 4).
+4. Scored six qualitative criteria; soft quota (top 3/sector + 2 wildcards) → top 8–10 + ranked appendix.
 
-| Niche | Under-served | Cash+ (job×margin) | Urgency | TAM (verified) | Ad proof | Textable | Total | Tier* |
-|---|---|---|---|---|---|---|---|---|
-| **Foundation repair / structural** | 3 | 5 | 5 | 4 — ~20–25k [EST]; $11.8B US+CA market [VERIFIED] | 5 | 4 | **26** | 🟢 GREEN ~11–14k |
-| **Mold remediation** | 4 | 4 | 4 | 5 — 60,020 damage-restoration industry [VERIFIED]; mold subset [EST] | 3 | 4 | **24** | 🟢 GREEN ~15–24k |
-| **Water damage restoration** | 2 | 4 | 5 | 5 — 60,020 [VERIFIED] | 4 | 3 | **23** | 🟢 GREEN ~18–24k |
-| **Basement waterproofing** | 3 | 4 | 4 | 4 — 13,825 waterproofing contractors [VERIFIED] | 4 | 4 | **23** | 🟡 RED/YEL ~6.9k |
-| **Crawlspace encapsulation** | 4 | 4 | 4 | 3 — subset of 13,825 pool [EST] | 3 | 4 | **22** | 🟡 RED/YEL ~5–7k |
-| Septic service & repair | 5 | 3 | 4 | 3 — 7,717 [VERIFIED] | 3 | 5 | 23 | 🔴 DROPPED: universe ~4.2k |
-| Men's health / TRT clinics | 2 | 3 | 4 | 2 — "hundreds" of clinics [VERIFIED/WSJ] | 5 | 3 | 19 | 🔴 DROPPED: universe ~1.5–3.5k |
-| Fire safety & compliance | 4 | 2 | 4 | 4 | 3 | 2 | 19 | ❌ fails cash+ |
-| Environmental testing | 4 | 2 | 4 | 3 | 3 | 3 | 19 | ❌ fails cash+ |
-| Storm shelters | 4 | 3 | 3 | 2 | 3 | 4 | 19 | ❌ TAM too small |
-| Kitchen hood cleaning | 4 | 2 | 3 | 4 | 2 | 3 | 18 | ❌ fails cash+ |
-| Specialty waste / disposal | 3 | 2 | 3 | 4 | 3 | 3 | 18 | ❌ fails cash+ |
-| Mobile home repair | 4 | 2 | 3 | 3 | 2 | 4 | 18 | ❌ fails cash+ |
+## Probe results (the cuts)
+| Query | Signal | Verdict |
+|---|---|---|
+| concrete contractor | FANNIT "7 Best" listicle + 5 dedicated agencies | ❌ SATURATED — reject (238110) |
+| car wash | SplashSource, ICS, OhmCo, Wash Brands + more | ❌ SATURATED — reject (811192) |
+| appliance repair | "Top 8" listicle + pay-per-call industry | ❌ SATURATED — reject (811412) |
+| locksmith | Thrive, Streamline, FlexLeads + lead-gen racket | ❌ SATURATED — reject (811490 slice) |
+| mental health practice | Thrive, TherapistX, Place Digital + FB groups | ❌ SATURATED — reject (621330) |
+| commercial machinery repair | 5 hits, all dealer/rental/OEM-focused (WebFX, FieldWrk, Mansfield, Altitude) — few target independent REPAIR SHOPS | ✅ underserved-leaning 3–4 |
+| home inspector | Inspector Media, Full View, Straight North + Spectora | 🟡 moderate 3 |
+| auto glass | AGMP, RealTime, CenterGrowth + r/autoglass "leads so expensive" | 🟡 moderate 3 |
+| masonry | CMN, MortarNet, Baystate, Timmermann (small field) | 🟡 moderate 3 |
+| finish carpentry | generalists w/ landing pages (Build&Boost, Blue Sky, Hook) + 1 DFW niche firm (Kinetic Curve 469) | 🟡 thin-dedicated 3 |
 
-\* Tier = TAM × textable% (mid-range estimates). Textable % remains the biggest unverified variable —
-Veriphone sample tests are the next proof step.
+## Top 8–10 scorecards
+TAM = CBP employer [VERIFIED]. Band = tier potential on employer math. Textability = [ESTIMATE] until Veriphone.
 
-## Top 5 (verified re-run) + why
+### 1. 811310 Commercial & industrial machinery repair — 🟢 GREEN · 22,433 US · DFW 370 · Hail10 2,080
+- **Frame:** B2B steady-state. Independent shops repairing manufacturing/construction/ag equipment; downtime = money.
+- Cash+ 4–5: repair tickets $500–$10k+ [EST] × 45–60% service margins [EST] → net $500–5k/job. | Urgency 4: downtime emergency culture. | Underserved 3–4: probe hit dealer/rental/OEM agencies, not repair shops — the open lane. | Ad proof 3 [EST]. | Textability 3 [EST].
+- Runway: 22,433 × ~55% ≈ **12.3k → GREEN**, 14+ months fresh-name pace.
+- Wedge: after-hours emergency dispatch AI + instant B2B quoting.
 
-1. **Foundation repair** (26) — unchanged #1. Cash+ passes 2–3× (jobs $8–15k; gross margins 40–60%
-   [VERIFIED: r/Construction — concrete/foundation subs]). Market $11.8B US+CA (2025, Future Market
-   Insights) [VERIFIED]. Owner-operated → mobile-heavy textability. Only candidate GREEN on every axis.
-2. **Mold remediation** (24) — promoted on verified TAM: sits inside the 60,020-firm damage-restoration
-   industry [VERIFIED: IBISWorld 6278]. Service-heavy, high-margin (50–60% [EST]), health-triggered
-   urgency, low agency presence. Caveat: mold-only subset is smaller — needs directory counts.
-3. **Water damage restoration** (23) — promoted on the same 60,020 industry [VERIFIED]. Extreme urgency
-   (property damage, insurance), proven ad spend. Weaknesses: franchise/call-center numbers depress
-   textability (~40–50% [EST]), and SERVPRO/ServiceMaster make it less "underserved."
-4. **Basement waterproofing** (23) — 13,825 waterproofing contractors [VERIFIED: IBISWorld 6069].
-   Universe ~6.9k sits just under the 8k green floor → tier hinges on the Veriphone test (50%+ mobile
-   flips it to YELLOW; 60% → GREEN). Flood-prone metro counts (DFW/Houston) matter here.
-5. **Crawlspace encapsulation** (22) — high-margin service work, most underserved of the set; TAM is a
-   subset of the 13,825 pool [EST] → likely RED/YEL. Proof phase decides.
+### 2. 238350 Finish carpentry — 🟢 GREEN+ · 32,169 US · DFW 372 · Hail10 3,282
+- **Frame:** steady + project-driven. Trim, millwork, custom cabinets; GCs + homeowners.
+- Cash+ 4: $2–10k jobs [EST] × 40–50% [EST] → net $1–5k. | Urgency 3. | Underserved 3: generalist coverage only + 1 DFW niche firm (Kinetic Curve). | Ad proof 2 [EST]. | Textability 3–4 [EST].
+- Runway: 32,169 × ~55% ≈ **17.7k → GREEN+**.
+- Wedge: instant quote + call-capture on GC-sourced work.
 
-Dropped on verified data: **septic** (IBISWorld: 7,717 businesses → ~4.2k reachable, RED — the most
-underserved, but the math doesn't clear), **TRT clinics** (WSJ: "hundreds" of clinics → ~1.5–3.5k
-reachable, RED — plus front-desk landlines).
+### 3. 811122 Automotive glass replacement — 🟠 ORANGE · 7,033 US · DFW 100 · Hail10 588
+- **Frame:** burst-demand + steady — the storm twin of PDR with a bigger verified home code.
+- Cash+ 3–4: windshield $200–500, ADAS calibration $1k+ [EST] × 40–50% [EST]; insurance volume. | Urgency 5: safety, drive-away risk, hail. | Underserved 3: dedicated agencies exist (AGMP/RealTime/CenterGrowth) + reddit pain thread = paid-lead racket ("leads so expensive") — call-capture is the counter. | Ad proof 4 [EST]. | Textability 4 [EST] (mobile techs).
+- Tier: RED/YEL steady-state → **burst override** (hail window play, same as PDR).
+- Wedge: storm-response + insurance-claim routing AI; instant quote.
 
-## Sources (this run)
-- IBISWorld 4710 — Septic, Drain & Sewer Cleaning: 7,717 businesses: https://www.ibisworld.com/united-states/industry/septic-drain-sewer-cleaning-services/4710/
-- IBISWorld 6069 — Waterproofing Contractors: 13,825 businesses: https://www.ibisworld.com/united-states/industry/waterproofing-contractors/6069/
-- IBISWorld 6278 — Damage Restoration Services: 60,020 businesses (via restorationinbound.com): https://www.ibisworld.com/united-states/industry/damage-restoration-services/6278/
-- Future Market Insights — US+Canada foundation repair services $11.8B (2025): https://www.futuremarketinsights.com/reports/united-states-and-canada-foundation-repair-services-market
-- r/Construction — concrete/foundation gross margins 40–60%: https://www.reddit.com/r/Construction/comments/5y57b3/
-- WSJ — TRT clinics "hundreds of online and storefront clinics": https://www.wsj.com/health/healthcare/testosterone-clinics-telehealth-steroids-474835d5
-- Grand View Research — mold remediation market $1.2B (2023): https://www.grandviewresearch.com/industry-analysis/mold-remediation-service-market-report
+### 4. 541350 Building inspection services — 🟠 ORANGE · 7,768 US · DFW 190 · Hail10 806 · NES ?
+- **Frame:** steady volume. Solo home inspectors; contract-deadline urgency.
+- Cash+ 3: $300–600 × 60–80% margin (near-zero COGS) → volume model: 10–15 inspections/mo covers $2.5k. | Urgency 4: real-estate deadlines, radon/mold add-ons. | Underserved 3: Inspector Media/Full View/Spectora = website+SEO tools, not AI call-capture. | Ad proof 3 [EST]. | Textability 4–5 [EST] (solo mobile-first).
+- Tier: ORANGE hinge — NES publication unknown; directory count decides.
+- Wedge: instant quote + booking for time-boxed inspection windows; after-hours scheduling.
 
-## PROOF GAPS (remaining)
-- Foundation repair: IBISWorld business count (industry report is paywalled) — count is [ESTIMATE].
-- Mold: standalone firm count (subset of 60,020) — needs directory counts.
-- Textable % for all five: Veriphone samples (150 leads/city, DFW first) — Skyline task specs ready.
-- Meta Ads Library run dates for all five: human/browser check (chat models can't read them).
-- Metro density counts: Google Maps counts for DFW + Houston (flood-prone, waterproofing/mold heavy).
-- Native web tools: gateway needs `hermes gateway restart` to load FIRECRAWL_API_KEY; direct-API
-  workaround used this run (key verified valid via HTTP 200).
+### 5. 238140 Masonry contractors — 🟢 GREEN · 18,481 US · DFW 271 · Hail10 1,872
+- **Frame:** steady. Retaining walls, brickwork, stonework.
+- Cash+ 4: $3–15k projects [EST] × 45–55% [EST]. | Urgency 3. | Underserved 3: small field (CMN, MortarNet, Baystate, Timmermann). | Ad proof 3 [EST]. | Textability 3 [EST].
+- Runway: 18,481 × ~55% ≈ **10.2k → GREEN edge**.
+- Wedge: instant quote for patio/wall/brickwork.
+
+### 6. 238170 Siding contractors — 🟡 YELLOW · 9,191 US · DFW 81 · Hail10 1,151
+- **Frame:** steady + storm. Hail damages siding — DFW is #1 hail metro.
+- Cash+ 4: $8–20k exterior jobs [EST] × ~40% [EST]. | Urgency 3–4: storm damage + energy bills. | Underserved **? [UNVERIFIED — probe pending]**. | Ad proof 3 [EST]. | Textability 3 [EST].
+- Tier: YELLOW hinge; storm angle is the lift.
+- Wedge: storm-response exterior + instant quote.
+
+### 7. 541620 Environmental consulting — 🟡 YELLOW · 10,109 US · DFW 162 · Hail10 930
+- **Frame:** B2B steady. Phase I ESA, testing, compliance (regulatory-driven).
+- Cash+ 4: $500–2k ESA, $1–5k compliance [EST] × 40–50% [EST]. | Urgency 3–4: regulatory deadlines, transactions. | Underserved **? [UNVERIFIED — probe pending; likely thin — consultants don't market]** | Ad proof 2 [EST]. | Textability 2–3 [EST].
+- Tier: YELLOW; exact TAM possible if NES publishes.
+- Wedge: compliance-season call-capture; B2B.
+
+### 8. 621112 Offices of psychiatrists — 🟢 GREEN · 13,017 US · DFW 337 · Hail10 1,484 · NES ✓
+- **Frame:** steady. Appointment-driven; no-show recovery is the wedge. **Health-caveat flag: HIPAA for AI answering; front-desk landline risk (TRT lesson).**
+- Cash+ 3: $150–400/session [EST] × 30–50% [EST]; no-show loss recovery. | Urgency 3. | Underserved 3 [EST] (therapy marketing saturated; medical offices less pitched). | Ad proof 2 [EST]. | Textability 2 [EST].
+- Tier: GREEN with NES ✓ → exact TAM (CBP + NES).
+- Wedge: no-show/after-hours call-capture + intake automation.
+
+### 9. Wildcard — 811490 Other personal/household goods repair (SLICE ceiling 11,007 US · DFW 183)
+- Name-the-niche: **watch & jewelry repair** (luxury-adjacent, $100–1k tickets [EST], thin marketing [EST]) vs electronics repair (saturated — uBreakiFix ecosystem). Mandatory: Google Maps directory count before any TAM claim.
+
+### 10. Wildcard — 238990 All other specialty trades (SLICE ceiling 40,302 US · DFW 807)
+- Name-the-niche: **insulation contractors** (energy rebates + utility deadlines), fireproofing, concrete cutting. Waterproofing already scored 23 🟡 in prior run. Mandatory: directory count.
+
+## Ranked appendix (one-row; rest of pool + knowns)
+| NAICS | Label | ESTAB [VERIFIED] | Band | Status |
+|---|---|---|---|---|
+| 238190 | Foundation repair (home code) | 6,277 | 🟠 | Prior run #1 — deep dive pending |
+| 561790 | Restoration/mold/water (SLICE) | 17,574 | 🟢 | Prior run 23–24; known |
+| 811121 | Auto body/PDR home | 34,665 | 🟢+ | Deep-researched (PDR) |
+| 238320 | House painters | 37,963 | 🟢+ | Deep-researched |
+| 238290 | Garage door | 7,907 | 🟠 | Deep-researched |
+| 561710 | Pest control | 16,080 | 🟢 | Known; cross-validated |
+| 238340 | Tile & terrazzo | 10,710 | 🟡 | Known; cross-validated |
+| 238160 | Roofing | 24,532 | 🟢 | Saturation anchor — reject |
+| 238110 | Poured concrete | 22,699 | 🟢 | Probe saturated — reject |
+| 811192 | Car washes | 19,463 | 🟢 | Probe saturated — reject |
+| 811412 | Appliance repair | 5,410 | 🟠 | Probe saturated — reject |
+| 621330 | Mental health practitioners | 40,885 | 🟢+ | Probe saturated — reject |
+| 621310 | Chiropractors | 40,179 | 🟢+ | Known industry — skip |
+| 621340 | PT/OT/speech | 50,883 | 🟢+ | Known industry — skip |
+| 238910 | Site prep | 39,686 | 🟢+ | B2B; sparse probe earlier — viable but GC-subcontracted |
+| 238330 | Flooring | 18,069 | 🟢 | Moderate; retail culture |
+| 238130 | Framing | 12,523 | 🟢 | GC-subcontracted — weak fit |
+| 541310 | Architectural services | 22,619 | 🟢 | Professionals — weak fit |
+| 541320 | Landscape architecture | 5,215 | 🟠 | Professionals — weak fit |
+| 541370 | Surveying | 7,372 | 🟠 | B2B; moderate |
+| 811191 | Oil change | 8,693 | 🟡 | Franchise-heavy — weak |
+| 561740 | Carpet/upholstery cleaning | 6,901 | 🟠 | Low tickets |
+| 238150 | Glass & glazing | 6,756 | 🟠 | Commercial B2B; moderate |
+| 621399 | Misc health (SLICE; TRT home) | 33,658 | 🟢+ | TRT dropped; med-spa naming possible |
+| 621999 | Misc ambulatory (SLICE) | 9,029 | 🟡 | Unnamed |
+| 238390 | Other finishing (SLICE) | 7,959 | 🟠 | Insulation/drywall naming possible |
+
+## Proof checklists (per finalist, before any commit)
+- **Machinery repair:** Google Maps DFW directory count (repair shops ≠ dealers); probe `"industrial repair shop marketing"`; Veriphone 100-lead sample.
+- **Finish carpentry:** Google Maps DFW count (trim/millwork/cabinet shops); Meta Ads Library `trim carpentry` run dates.
+- **Auto glass:** Google Maps DFW count (glass-only, exclude body shops); Meta Ads Library `auto glass repair` + `hail damage` run dates; Veriphone sample — burst viability.
+- **Building inspection:** NES publication check for 541350 (screener shows ?); Google Maps DFW count; Veriphone sample (expect high mobile).
+- **Masonry:** Google Maps DFW count; Meta Ads Library `masonry contractor` run dates.
+- **Siding:** probe `"siding contractor marketing agency"` (currently UNVERIFIED); Google Maps DFW count.
+- **Environmental consulting:** probe `"environmental consulting marketing"`; NES check; Veriphone (expect low mobile — flag).
+- **Psychiatrists:** HIPAA/voicemail fit review for AI answering; Veriphone sample (expect low mobile — flag); no-show economics interview.
+- **811490 / 238990 slices:** Google Maps directory counts per named niche (watch repair / insulation) — the decisive number, as always.
+
+## Verdict
+**Top new bet: 811310 commercial machinery repair** — the only finalist with B2B cash+ strength, GREEN steady-state runway, and a probe showing the existing agencies chase dealers/OEMs, not independent repair shops. **Storm twin: 811122 auto glass** — the PDR play with a cleaner home code (7,033) and a proven paid-lead pain point to attack with call-capture. **Safest steady: finish carpentry** (GREEN+ TAM, thin dedicated competition). All scores beyond TAM are [ESTIMATE] until the proof checklists run.
