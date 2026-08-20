@@ -24,69 +24,76 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] probe pendi
 | finish carpentry | generalists w/ landing pages (Build&Boost, Blue Sky, Hook) + 1 DFW niche firm (Kinetic Curve 469) | 🟡 thin-dedicated 3 |
 
 ## Top 8–10 scorecards
-TAM = CBP employer [VERIFIED]. Band = tier potential on employer math. Textability = [ESTIMATE] until Veriphone.
 
-### 1. 811310 Commercial & industrial machinery repair — 🟢 GREEN · 22,433 US · DFW 370 · Hail10 2,080
-- **What it is:** independent shops that fix the machines other businesses depend on — factory equipment, forklifts, construction and agricultural machinery, commercial kitchen equipment. B2B: when a production line or a forklift goes down, it's an emergency call, not a nice-to-have.
-- **Frame:** B2B steady-state. Downtime = money.
-- Cash+ 4–5: repair tickets $500–$10k+ [EST] × 45–60% service margins [EST] → net $500–5k/job. | Urgency 4: downtime emergency culture. | Underserved 3–4: probe hit dealer/rental/OEM agencies, not repair shops — the open lane. | Ad proof 3 [EST]. | Textability 3 [EST].
-- Runway: 22,433 × ~55% ≈ **12.3k → GREEN**, 14+ months fresh-name pace.
-- Wedge: after-hours emergency dispatch AI + instant B2B quoting.
+### 1. Machinery repair
+• Niche: Commercial & industrial machinery repair (811310)
+  * In plain English: Independent shops that fix the machines other businesses depend on — factory equipment, forklifts, construction/ag machinery, commercial kitchen gear. When a production line or forklift dies, it's an emergency call, not a nice-to-have.
+• TAM [VERIFIED]: 22,433 employer (DFW 370 · Hail10 2,080); NES unpublished → employer floor
+• Band: 🟢 GREEN
+• The case: The only finalist strong on every axis — B2B cash+ 4–5 ($500–10k tickets × 45–60% margins), urgency 4 (downtime), underserved 3–4 (agencies chase dealers/OEMs, not repair shops), ~12.3k textable runway. Wedge: after-hours emergency dispatch AI + instant B2B quoting.
 
-### 2. 238350 Finish carpentry — 🟢 GREEN+ · 32,169 US · DFW 372 · Hail10 3,282
-- **What it is:** the "visible" carpenters — custom trim, baseboards, crown molding, doors, staircases, built-in shelving and cabinets, custom millwork. Distinct from framing (the rough structural skeleton); this is the detailed, finish work that shows. Clients: GCs and homeowners with taste and budget.
-- **Frame:** steady + project-driven.
-- Cash+ 4: $2–10k jobs [EST] × 40–50% [EST] → net $1–5k. | Urgency 3. | Underserved 3: generalist coverage only + 1 DFW niche firm (Kinetic Curve). | Ad proof 2 [EST]. | Textability 3–4 [EST].
-- Runway: 32,169 × ~55% ≈ **17.7k → GREEN+**.
-- Wedge: instant quote + call-capture on GC-sourced work.
+### 2. Finish carpentry
+• Niche: Finish carpentry contractors (238350)
+  * In plain English: The "visible" carpenters — custom trim, baseboards, crown molding, doors, staircases, built-in cabinets and millwork. Distinct from rough framing; the detailed finish work that shows. Clients: GCs + homeowners with taste and budget.
+• TAM [VERIFIED]: 32,169 employer (DFW 372 · Hail10 3,282); NES unpublished
+• Band: 🟢 GREEN+
+• The case: Biggest steady TAM of the finalists (~17.7k textable), cash+ 4 ($2–10k jobs × 40–50%), and the dedicated field is thin — generalists with landing pages + 1 DFW niche firm (Kinetic Curve). Wedge: instant quote + call-capture on GC-sourced work.
 
-### 3. 811122 Automotive glass replacement — 🟠 ORANGE · 7,033 US · DFW 100 · Hail10 588
-- **What it is:** shops (often mobile — they come to you) that replace and repair windshields, side and rear windows on cars and trucks. Insurance-driven (comprehensive claims), heavy hail volume, plus the ADAS-calibration upsell on newer vehicles. Safety urgency: cracked windshield = drive-away risk, tickets, failed inspections.
-- **Frame:** burst-demand + steady — the storm twin of PDR with a bigger verified home code.
-- Cash+ 3–4: windshield $200–500, ADAS calibration $1k+ [EST] × 40–50% [EST]; insurance volume. | Urgency 5: safety, drive-away risk, hail. | Underserved 3: dedicated agencies exist (AGMP/RealTime/CenterGrowth) + reddit pain thread = paid-lead racket ("leads so expensive") — call-capture is the counter. | Ad proof 4 [EST]. | Textability 4 [EST] (mobile techs).
-- Tier: RED/YEL steady-state → **burst override** (hail window play, same as PDR).
-- Wedge: storm-response + insurance-claim routing AI; instant quote.
+### 3. Auto glass
+• Niche: Automotive glass replacement shops (811122)
+  * In plain English: Shops (often mobile — they come to you) that replace windshields and side/rear windows on cars. Insurance-driven, hail volume, ADAS-calibration upsell. Cracked windshield = safety risk + tickets = urgent.
+• TAM [VERIFIED]: 7,033 employer (DFW 100 · Hail10 588); NES unpublished
+• Band: 🟠 ORANGE
+• The case: The storm twin of PDR — RED/YEL steady-state with a burst-demand override (hail-window play). Urgency 5, cash+ 3–4, underserved 3 with a verified pain: r/autoglass "leads so expensive" = paid-lead racket that call-capture counters. Wedge: storm-response + insurance-claim routing AI.
 
-### 4. 541350 Building inspection services — 🟠 ORANGE · 7,768 US · DFW 190 · Hail10 806 · NES ?
-- **What it is:** home inspectors — typically solo operators or tiny teams who do pre-purchase/pre-sale inspections of houses (structure, roof, electrical, plumbing, plus radon/mold add-ons) during real-estate transactions. They deliver a report and a walkthrough; their work is deadline-bound by the home-buying contract period.
-- **Frame:** steady volume.
-- Cash+ 3: $300–600 × 60–80% margin (near-zero COGS) → volume model: 10–15 inspections/mo covers $2.5k. | Urgency 4: real-estate deadlines, radon/mold add-ons. | Underserved 3: Inspector Media/Full View/Spectora = website+SEO tools, not AI call-capture. | Ad proof 3 [EST]. | Textability 4–5 [EST] (solo mobile-first).
-- Tier: ORANGE hinge — NES publication unknown; directory count decides.
-- Wedge: instant quote + booking for time-boxed inspection windows; after-hours scheduling.
+### 4. Building inspection
+• Niche: Building inspection services — home inspectors (541350)
+  * In plain English: Solo operators doing pre-purchase/pre-sale house inspections (structure, roof, electrical, plumbing + radon/mold add-ons). Work is deadline-bound by the home-buying contract period.
+• TAM [VERIFIED]: 7,768 employer (DFW 190 · Hail10 806); NES publication unknown (?) — exact TAM possible if published
+• Band: 🟠 ORANGE
+• The case: Near-zero COGS (~80% margins) volume model — 10–15 inspections/mo covers $2.5k; urgency 4 (contract deadlines); underserved 3 (competitors sell websites/SEO, not AI call-capture); textability 4–5 (solo mobile-first). Wedge: instant quote + booking for time-boxed inspection windows.
 
-### 5. 238140 Masonry contractors — 🟢 GREEN · 18,481 US · DFW 271 · Hail10 1,872
-- **What it is:** builders who work in brick, block, stone and concrete units — retaining walls, patios, walkways, fireplaces, chimneys, brick veneer, stonework, repointing (replacing crumbling mortar). Long-lived exterior projects at $3–15k+ a piece.
-- **Frame:** steady.
-- Cash+ 4: $3–15k projects [EST] × 45–55% [EST]. | Urgency 3. | Underserved 3: small field (CMN, MortarNet, Baystate, Timmermann). | Ad proof 3 [EST]. | Textability 3 [EST].
-- Runway: 18,481 × ~55% ≈ **10.2k → GREEN edge**.
-- Wedge: instant quote for patio/wall/brickwork.
+### 5. Masonry
+• Niche: Masonry contractors (238140)
+  * In plain English: Brick, block and stone builders — retaining walls, patios, fireplaces, chimneys, brick veneer, repointing. Long-lived exterior projects.
+• TAM [VERIFIED]: 18,481 employer (DFW 271 · Hail10 1,872); NES unpublished
+• Band: 🟢 GREEN
+• The case: $3–15k projects × 45–55% = cash+ 4; small agency field (CMN, MortarNet, Baystate, Timmermann) = underserved 3; ~10.2k textable → GREEN edge. Wedge: instant quote for patio/wall/brickwork.
 
-### 6. 238170 Siding contractors — 🟡 YELLOW · 9,191 US · DFW 81 · Hail10 1,151
-- **What it is:** the companies that install and repair the exterior cladding of homes and buildings — vinyl, fiber cement (HardiePlank), wood, metal, stucco. Driven by storm/hail damage and energy bills; big exterior tickets $8–20k.
-- **Frame:** steady + storm. Hail damages siding — DFW is #1 hail metro.
-- Cash+ 4: $8–20k exterior jobs [EST] × ~40% [EST]. | Urgency 3–4: storm damage + energy bills. | Underserved **? [UNVERIFIED — probe pending]**. | Ad proof 3 [EST]. | Textability 3 [EST].
-- Tier: YELLOW hinge; storm angle is the lift.
-- Wedge: storm-response exterior + instant quote.
+### 6. Siding
+• Niche: Siding contractors (238170)
+  * In plain English: Installers of exterior cladding — vinyl, fiber cement (HardiePlank), wood, metal, stucco. Driven by storm/hail damage and energy bills.
+• TAM [VERIFIED]: 9,191 employer (DFW 81 · Hail10 1,151); NES unpublished
+• Band: 🟡 YELLOW
+• The case: Big exterior tickets $8–20k × ~40% = cash+ 4; urgency 3–4 with the storm angle (hail damages siding; DFW = #1 hail metro); underserved [UNVERIFIED — probe pending]. Wedge: storm-response exterior + instant quote.
 
-### 7. 541620 Environmental consulting — 🟡 YELLOW · 10,109 US · DFW 162 · Hail10 930
-- **What it is:** firms that do environmental assessment and compliance for real-estate deals and businesses — Phase I/II environmental site assessments (ESA), soil/water testing, asbestos/lead surveys, regulatory reporting. B2B, regulation-driven, deadline-bound.
-- **Frame:** B2B steady.
-- Cash+ 4: $500–2k ESA, $1–5k compliance [EST] × 40–50% [EST]. | Urgency 3–4: regulatory deadlines, transactions. | Underserved **? [UNVERIFIED — probe pending; likely thin — consultants don't market]** | Ad proof 2 [EST]. | Textability 2–3 [EST].
-- Tier: YELLOW; exact TAM possible if NES publishes.
-- Wedge: compliance-season call-capture; B2B.
+### 7. Environmental consulting
+• Niche: Environmental consulting services (541620)
+  * In plain English: Firms doing environmental assessment and compliance for real-estate deals and businesses — Phase I/II site assessments (ESA), soil/water testing, asbestos/lead surveys. B2B, regulation-driven.
+• TAM [VERIFIED]: 10,109 employer (DFW 162 · Hail10 930); NES publication unknown
+• Band: 🟡 YELLOW
+• The case: Cash+ 4 ($500–2k ESA, $1–5k compliance × 40–50%); urgency 3–4 (regulatory deadlines); underserved likely thin [UNVERIFIED — consultants don't market]; textability 2–3 (offices — flag). Wedge: compliance-season call-capture.
 
-### 8. 621112 Offices of psychiatrists — 🟢 GREEN · 13,017 US · DFW 337 · Hail10 1,484 · NES ✓
-- **What it is:** medical practices of psychiatrists (MDs/DOs) who diagnose and treat mental-health conditions and prescribe medication. Appointment-based, insurance-billed, notoriously no-show-prone; front-desk phone traffic. **Health-caveat flag: HIPAA for AI answering; front-desk landline risk (TRT lesson).**
-- **Frame:** steady. No-show recovery is the wedge.
-- Cash+ 3: $150–400/session [EST] × 30–50% [EST]; no-show loss recovery. | Urgency 3. | Underserved 3 [EST] (therapy marketing saturated; medical offices less pitched). | Ad proof 2 [EST]. | Textability 2 [EST].
-- Tier: GREEN with NES ✓ → exact TAM (CBP + NES).
-- Wedge: no-show/after-hours call-capture + intake automation.
+### 8. Psychiatrists
+• Niche: Offices of psychiatrists (621112)
+  * In plain English: Medical practices of psychiatrists (MDs/DOs) who diagnose and treat mental-health conditions and prescribe medication. Appointment-based, insurance-billed, notoriously no-show-prone; front-desk phone traffic.
+• TAM [VERIFIED]: 13,017 + NES ✓ (DFW 337 · Hail10 1,484) — exact TAM possible
+• Band: 🟢 GREEN
+• The case: Only finalist with exact TAM (NES published) — but HIPAA + landline flags. Cash+ 3 (no-show recovery), urgency 3, textability 2 (front-desk risk — TRT lesson). Wedge: no-show/after-hours call-capture + intake automation.
 
-### 9. Wildcard — 811490 Other personal/household goods repair (SLICE ceiling 11,007 US · DFW 183)
-- **What it is (named slice): watch & jewelry repair** — small shops that service watches and jewelry: battery and movement service, strap/bracelet work, ring sizing, stone setting. Luxury-adjacent, $100–1k tickets [EST], thin marketing [EST]. (The electronics-repair alternative in this bucket is saturated — uBreakiFix ecosystem.) Mandatory: Google Maps directory count before any TAM claim.
+### 9. Wildcard — watch & jewelry repair
+• Niche: Watch & jewelry repair (slice of 811490)
+  * In plain English: Small shops servicing watches and jewelry — battery/movement service, strap work, ring sizing, stone setting. Luxury-adjacent. (The electronics-repair alternative in this bucket is saturated — uBreakiFix ecosystem.)
+• TAM [VERIFIED]: ceiling 11,007 (DFW 183) — slice count requires Google Maps directory count
+• Band: 🟠 ceiling-tier
+• The case: $100–1k tickets [EST], thin marketing [EST] — all scores unverified until the directory count lands. Mandatory proof: name-the-niche directory count.
 
-### 10. Wildcard — 238990 All other specialty trades (SLICE ceiling 40,302 US · DFW 807)
-- **What it is (named slices): insulation contractors** — companies that install/upgrade attic and wall insulation (fiberglass, spray foam, cellulose), motivated by energy rebates and utility deadlines; also in the bucket: fireproofing, concrete cutting. Waterproofing already scored 23 🟡 in prior run. Mandatory: directory count.
+### 10. Wildcard — insulation contractors
+• Niche: Insulation contractors (slice of 238990)
+  * In plain English: Companies installing/upgrading attic and wall insulation (fiberglass, spray foam, cellulose) — driven by energy rebates and utility deadlines; the bucket also holds fireproofing and concrete cutting. Waterproofing already scored 23 🟡 in a prior run.
+• TAM [VERIFIED]: ceiling 40,302 (DFW 807) — slice count requires Google Maps directory count
+• Band: 🟢 ceiling-tier
+• The case: Big ceiling, but it's a residual bucket — must name the niche and size via directories before any claim. Mandatory proof: name-the-niche directory count.
 
 ## Ranked appendix (one-row; rest of pool + knowns)
 | NAICS | Label | What it is | ESTAB [VERIFIED] | Band | Status |
