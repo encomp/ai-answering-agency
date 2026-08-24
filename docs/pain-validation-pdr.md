@@ -12,11 +12,15 @@ Run: `niche-pain-validation` skill, TIER 1 (quick validation). Date: 2026-08-23.
 ## 2. Market snapshot [VERIFIED]
 | Metric | Value |
 |---|---|
-| Businesses (search: "paintless dent repair" + "hail damage repair", Dallas) | 176 |
-| With phone | 170 (96%) |
-| With website | 140 (79%) |
-| Category mix | Auto dent removal 57 · Auto body shop 50 · Roofing 25 (hail overlap) · Auto repair 21 |
-| Cities | Dallas-core 159 (location scope = Dallas only, not full DFW metro) |
+| Businesses (search: "paintless dent repair" + "hail damage repair", DFW metro: Dallas + Fort Worth + Plano + Arlington, deduped) | **454** |
+| With phone | 446 (98%) |
+| With website | 378 (83%) |
+| **PDR-core (Auto dent removal service)** | **134 — the direct target list** |
+| Category mix | Auto body 148 · Auto dent removal 134 · Roofing 75 (hail overlap) · Auto repair 44 |
+| By city | Dallas 159 · Fort Worth 127 · Arlington 84 · Plano 40 · Pantego 8 · Haslet 6 · Keller 4 · +outliers |
+| Original Dallas-core count | 176 (this run extends to metro) |
+
+Run 2 (extension, 2026-08-23): Fort Worth 147 raw · Plano 40 · Arlington 92; ~$1.5. Suburbs not scraped (Frisco, McKinney, Denton, Irving, Garland, Mesquite) — expected to add <10% to the PDR-core count.
 
 ## 3. Funnel audit — the structural wedge [VERIFIED, homepage-only]
 Top 12 PDR-core shops by review count, scored on 5 signals (2 pts each, max 10):
@@ -62,13 +66,14 @@ Top 12 PDR-core shops by review count, scored on 5 signals (2 pts each, max 10):
 Job postings (sales/CSR hires = revealed willingness-to-pay) · Meta Ads Library (advertisers + run dates — closes the last [UNVERIFIED] from the deep-dive) · BBB complaints · Facebook PDR groups · NOAA hail-event history for Dallas. **Recommended: only if this niche stays a finalist.**
 
 ## 8. Limitations
-- Metro scope = Dallas city core (locationQuery "Dallas, USA"); full DFW metro needs Fort Worth/Plano/Arlington runs
+- Metro scope = 4 core cities (Dallas/Fort Worth/Plano/Arlington); northern suburbs (Frisco/McKinney) and mid-cities not yet scraped — expect <10% uplift
 - Homepage-only funnel audit (quote pages deeper may exist; chat on subpages unlikely but not ruled out)
 - Review sample = 8 newest per place × 20 places; one angry customer can dominate a small sample
 - placeName missing from review output — quotes attributed by placeId (join available in raw data)
 
 ## 9. Next actions
-1. (Optional) Fort Worth + Plano GMaps runs → full DFW metro count (~$3)
+1. ✅ DONE — full DFW metro count: 454 businesses, 134 PDR-core (raw list at `/tmp/pdr_dfw_metro.json`)
 2. Tier 2 if PDR stays a finalist: Meta Ads Library + Indeed/LinkedIn + BBB (~$20–40)
-3. Phase 2 (deferred): Retell/VAPI mystery calls on the 176 list — day + after-hours, ~$5–10
-4. Owner interviews (human, later): revenue mix + account concentration — no automated proxy exists
+3. Phase 2 (deferred): Retell/VAPI mystery calls on the 134 PDR-core list — day + after-hours, ~$5–10
+4. Veriphone line-type sample on the 134 (mobile % = the SMS-reachability number from the deep-dive)
+5. Owner interviews (human, later): revenue mix + account concentration — no automated proxy exists
