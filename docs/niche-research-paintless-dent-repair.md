@@ -17,6 +17,7 @@ claims processed [VERIFIED: hi-techpdr.com]). Buyers: consumers (hail, door ding
 Ticket sizes: consumer dent **$85–225** [VERIFIED: fenderbender.com]; door-ding bundles $197–500
 [VERIFIED: denttime.com]; multi-dent/hail jobs **$1,000–5,000+** [VERIFIED: reddit r/Autobody];
 dealer reconditioning ≈ **$600/car** average [VERIFIED: dalepollak.com, dealersedge.com].
+**Full segment-by-segment ticket breakdown + blended average job value → see §10 (Job Economics).**
 Gross margins: structurally high (labor-only), but hail-chaser ops report slim net (20–25% of gross
 [VERIFIED: pdrsecrets.com — net-margin caution]) — materials aren't the cost, travel/coordination are.
 Seasonality: hail-driven demand bursts May–Aug; **500,000+ hail property claims/year US**
@@ -113,6 +114,7 @@ The burst-demand model is the differentiator: no agency competitor sells storm-r
 steady-state tier table doesn't capture it. Entry offer: **storm-response AI answering + instant quote**
 for DFW/hail-alley PDR shops, dealer reconditioning contracts as the counter-seasonal baseline.
 Pricing anchor: one hail job $1–5k; 1–3 jobs/month justify the client's $2.5k monthly spend.
+Retail-only math fails (12–14 retail dents/mo needed at $300 avg — see §10); dealer baseline ≈ 4–5 cars/mo.
 
 **Next 3 actions:** ① Google Maps directory count of PDR businesses (DFW first, then Denver) — the
 DECISIVE number now: the CBP ceiling is verified but the PDR slice factor is unknown, and solo techs
@@ -123,7 +125,87 @@ are invisible to Census (NES unpublished at 6-digit); ② Veriphone sample (150 
 Single-niche run — see `docs/niche-brainstorm.md` for cross-niche comparison (PDR was not on the
 original brainstorm shortlist; this deep dive was a deliberate addition).
 
+## 10. Job Economics — Average Job Value by Segment (added 2026-09-11)
+
+Question answered: *"For the PDR niche, what is the average job cost?"* There is **no single average** —
+the PDR ticket is trimodal by revenue segment. PDR is effectively three businesses sharing a tool cart.
+Verification run: Firecrawl search + scrape (dentevo, prdents, dingking, dentadvisor) + Triple-I.
+
+### Segment A — Retail consumer dent (steady-state work)
+
+| Repair | Ticket | Source |
+|---|---|---|
+| Single door ding (small, paint intact) | **$195–295** | dentevo.com 2026 guide |
+| Multiple door dings (same panel / 2 doors) | **$195–350** | dentevo.com |
+| Medium dent (golf ball, no crease) | **$250–450** | dentevo.com |
+| Large / multi-panel dent | **$500–900** | dentevo.com |
+| Everyday dents, San Diego market | **$197–500** | denttime.com |
+| Per-dent national anchors | **$75–350+**; small dents **$75–200**, consumer dent **$85–225** | thedingking.com; prdents.com; fenderbender.com |
+
+→ **Realistic average retail invoice ≈ $250–350.**
+Caveat: published $75–200 figures are *anchor prices, not invoices*. PDR shops don't publish price lists —
+pricing is time- and access-based (dent size, depth/crease, brace behind the panel, panel count), so real
+invoices cluster higher than the headline anchors.
+
+### Segment B — Hail / insurance jobs (burst demand, the big ticket)
+
+| Damage tier | Ticket | Source |
+|---|---|---|
+| Light hail (single / limited multi-panel) | **$500–1,200** | dentevo.com |
+| Extensive hail (multi-panel, high count) | **$1,200–4,000+** | dentevo.com |
+| Severe (hundreds of dents across panels) | **$2,000–7,500+** | prdents.com |
+| Washington DC metro average hail repair | **$2,000–4,000** | thedenthero.com |
+| **HARD ANCHOR — avg comprehensive auto claim 2024** | **$2,306** | [VERIFIED: iii.org] Triple-I Facts+Statistics: Auto insurance |
+
+Per-panel PDR reference [VERIFIED: prdents.com]: hood $300–900 · roof $500–1,800 · doors $200–700 ·
+fenders/quarters $250–800 (vs $600–2,000+ /panel for traditional repaint work).
+
+→ **Realistic average hail job ≈ $2,000–3,000.** Hail is a comprehensive-claim cause, so the Triple-I
+$2,306 comprehensive severity is the best hard, industry-wide anchor for the hail ticket. Treat it as an
+upper-middle bound: comprehensive also includes theft/fire/vandalism claims.
+
+### Segment C — Wholesale / dealer reconditioning (recurring, counter-seasonal baseline)
+
+| Item | Rate | Source |
+|---|---|---|
+| Per dent, wholesale vs retail | **$50–100 wholesale** vs $75–150 retail | dentadvisor.org |
+| Per car (dealer/wholesale volume) | **$100–200/car** | PDR tech groups (Dent World) |
+| Full reconditioning per vehicle | **≈ $600/car** average | dalepollak.com; dealersedge.com |
+
+→ **Realistic avg dealer invoice ≈ $180–600/car**, high volume, low price per car, drives throughput not margin.
+
+### Blended "average job"
+
+Mix assumption **[ESTIMATE per operator]** (50% retail ding @ $300 · 30% dealer @ $180 · 20% hail @ $2,500):
+**weighted average ≈ $740/job; median job ≈ $300.** The mean is hail-year dependent — in an active storm
+season the mean pushes well above $1,000; in a dry year it collapses toward the retail median.
+
+### Cost side (if "job cost" = the shop's cost, not the price)
+
+- **Labor-only model**: no paint, no parts. COGS ≈ technician pay + travel/tools/materials (glue, tabs, rods).
+- **Technician compensation** [VERIFIED: PDR tech groups]: **40–50% of the ticket** at retail (up to
+  50–70% with volume bonus) · **$100–200/car** wholesale · **$600–1,200/day** day-rate arrangement.
+- **Gross margin ≈ 60%** retail (labor-only, near-zero materials); but hail-chaser operations net only
+  **20–25% of gross** — travel, coordination and sales commission eat the difference [VERIFIED: pdrsecrets.com].
+
+### Bearing on client economics ($2,500/mo out-of-pocket = fee + ad spend)
+
+| Revenue model | Jobs needed/mo | Verdict |
+|---|---|---|
+| Hail-led (avg $2,500, ~60% gross ≈ $1,500/job) | **1–2** | ✅ Passes — matches §8 "1–3 jobs" anchor |
+| Dealer contract ($600/car recurring) | **~4–5 cars** | ✅ Passes as steady baseline |
+| Retail-only ($300 ticket, ~$190 gross) | **12–14 dents** | ❌ Fails without ad spend — confirms §8 Cash+ = 2 |
+
+**Conclusion for the offer**: this niche is only viable on a **hail-led or dealer-baseline** model. The
+AI-answering/instant-quote offer must therefore be sold on **storm-window capture (big tickets) plus
+dealer reconditioning throughput (recurring)** — a retail-ding-only PDR shop cannot fund a $2.5k/mo client
+retainer, and should be a de-prioritized prospect segment in the DFW list.
+
 ## PROOF GAPS
+- Revenue-mix per shop (retail-ding vs hail vs dealer split) — no automated proxy exists; needs owner
+  interviews. §10 blended average ($740) rests on an [ESTIMATE] mix, not measured data.
+- Triple-I $2,306 is average comprehensive auto-claim severity (all causes), not hail-only severity —
+  hail-specific severity is not published by Triple-I.
 - Google Maps directory count of PDR businesses (DFW first) — the decisive slice factor (Apify/Skyline task).
 - IBISWorld Auto Body Shops (1694) business count — paywalled; query: `ibisworld auto body shops number of businesses`.
 - DFW + Denver PDR directory counts — Google Maps manual/Apify.
