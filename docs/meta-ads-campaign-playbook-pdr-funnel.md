@@ -109,6 +109,32 @@ Highest volume, fastest learning, no commitment filter. You get tire-kickers, bu
 
 **Recommendation: Phase 1 = Option C (`Lead` + value). Phase 2 = Option A (`Schedule` + value). Use Option B only if the shop insists on literal online bookings being the KPI.**
 
+### 2.1 How the optimization event changes what Meta actually buys
+
+Naming an optimization event is not a reporting choice — it is a **definition of the customer**. Meta searches the population for the cheapest people who match that event's phenotype, and because the signal is always imperfect it takes the cheapest available *shortcut* to the event. So the question to ask before choosing is:
+
+> **"What is the laziest thing a person can do that still counts as this event?"**
+
+Whatever that is, is what you will buy in volume three weeks later.
+
+| | **Option A** — commitment event | **Option B** — calendar `Schedule` only | **Option C** — `Lead` + value |
+|---|---|---|---|
+| Event fires when | Contact submitted **and** (slot picked **or** tech callback requested) | Slot picked on the calendar | Contact submitted at step 6 |
+| Phenotype Meta learns | "Gives a phone number after seeing a price, then commits to a slot or a call" | "Will tap a calendar slot for a small fixed-price job" | "Will trade contact details to see a price" |
+| Laziest path that counts | Request a callback — no price acceptance needed | Tap a slot at 11pm; nothing binds them | Fill the form, ignore the number |
+| Est. event volume | Highest (~2× Option B) | Lowest | High (higher than A) |
+| Est. cost per event [ESTIMATE] | $35–$90 | $50–$140 | $20–$45 |
+| **High-value jobs ($600–$2,016) in the reward signal** | ✅ **Yes** — callback jobs count | ❌ **No — structurally excluded** | ✅ Partially, via `value` |
+| Expected job mix | Broad: single-dent **and** hail / multi-panel / crease | Small single-dent skew | Broad, but tire-kicker heavy |
+| Learning phase (50/wk, ~$580/wk budget) | Reachable | Usually unreachable → permanent "Learning Limited" | Reachable fastest |
+| Failure mode | Callback requests with no follow-up labour = paid but unconverted. The ad objective now depends on ops discipline. | Meta confidently buys cheap low-value work; spend looks efficient on CPL | Weak commitment filter; `value` passed but the quote is an estimate, not a promise |
+
+**The compounding problem with Option B.** The exclusion isn't a one-time bias — it's self-reinforcing. Each week the audiences that produce callback jobs convert less often on `Schedule`, so they receive less delivery; the algorithm then looks further into the "cheap slot-tapper" tail. By day 90 the ad account has systematically defunded the funnel's highest-value branch, and the routing logic that makes the funnel genuinely smart has become dead code from a media standpoint. The shop will report "ads work, tickets are small."
+
+**Why Option A fits this funnel specifically.** Option B optimizes the funnel's *filtered output* — but the filter was engineered to protect the shop's time (route unquotable jobs to a human), not to serve as an advertising objective. Option A aligns the ad objective with the funnel's *routing logic* — the thing the funnel is actually good at: separating price-quotable jobs from jobs that need a tech, and capturing a commitment from both. That's also why `value` matters so much under Option A: it's the mechanism that stops the algorithm from preferring the easy $195 callback over the $1,344 hail truck.
+
+**The caveat that applies to all three: a booking is not revenue.** Until offline uploads of *attended* appointments and *closed* jobs (with real invoice value) are flowing back into the dataset, every option optimizes a proxy. Options A and C are better proxies than B because they capture commitment *and* value; only the offline loop (§4.3, Phase 3) makes any of them *true*. Plan for it from day one — it's the difference between a campaign that reports well and a campaign that makes money.
+
 ---
 
 ## 3. What's missing from the tracking stack (fix before spending $1)
