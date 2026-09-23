@@ -5,6 +5,10 @@
 **Prereq reading:** `docs/meta-ads-campaign-playbook-pdr-funnel.md` §2–§3.
 **Tags:** `[VERIFIED]` read from source this run · `[ESTIMATE]` reasoned · `[UNVERIFIED]` confirm before relying on it.
 
+**Decision log:**
+- **2026-09-23 — Optimization event = Option A** (commitment event, value-weighted). See the playbook's §2.1.
+- **2026-09-23 — Availability source = Google Calendar** (service account + calendar sharing). The calendar owns availability and technician visibility; the CRM owns outcomes. Contract in §8.
+
 ---
 
 ## 1. Architecture
@@ -313,6 +317,159 @@ Required:
 
 **Acceptance test:** book from the funnel, verify the slot disappears from the calendar, the CRM holds the appointment, the SMS arrives, and exactly **one** `Schedule` event appears in Events Manager (not two).
 
+### 8.1 Auth model — service account, not OAuth
+
+Most small PDR shops run a plain `@gmail.com` calendar, so **domain-wide delegation is unavailable** (it requires Google Workspace). Use the pattern that works everywhere:
+
+1. Create a Google Cloud project → enable the **Google Calendar API**.
+2. Create a **service account**; generate a JSON key → server env only, never client-side.
+3. In the shop's Google Calendar → *Settings and sharing → Share with specific people* → add the service account's email with **"Make changes to events."**
+4. Scopes (least privilege, both needed):
+   - `https://www.googleapis.com/auth/calendar.readonly` — for `freeBusy`
+   - `https://www.googleapis.com/auth/calendar.events` — for insert/patch
+
+**Why not OAuth with a stored refresh token:** it requires a consent flow, the token dies after 6 months of disuse or on password change, and you inherit an outage nobody notices. Service-account keys are rotatable and don't expire on their own.
+
+**Why not `events.watch` (push notifications):** channels must be renewed at most every 7 days, require a public HTTPS endpoint, and need `nextSyncToken` + `410 GONE` recovery logic. It buys nothing for this use case. See §8.6.
+
+### 8.2 The four API calls (that's the whole integration)
+
+**1. Availability — `freeBusy`** (never guess what's open):
+
+```
+POST https://www.googleapis.com/calendar/v3/freeBusy
+{
+  "timeMin":  "2026-09-24T00:00:00-05:00",
+  "timeMax":  "2026-10-08T00:00:00-05:00",
+  "timeZone": "America/Chicago",
+  "items":    [{ "id": "<shop_calendar_id>" }]
+}
+→ calendars["<id>"].busy = [{ start, end }, …]
+```
+
+**2. Book — `events.insert`:**
+
+```
+POST https://www.googleapis.com/calendar/v3/calendars/<calendarId>/events
+{
+  "summary":  "PDR — <customer name> — <sizeTier>",
+  "location": "<mobile address, or ZIP if pickup>",
+  "description": "lead_id: …\nQuote range: $385–$640\nVehicle: 2019 Ford F-150\nPhone: …\nRoute: standard",
+  "start": { "dateTime": "2026-09-25T13:00:00-05:00", "timeZone": "America/Chicago" },
+  "end":   { "dateTime": "2026-09-25T13:45:00-05:00", "timeZone": "America/Chicago" },
+  "extendedProperties": {
+    "private": { "leadId": "…", "shopId": "…", "tier": "standard", "value": "512", "source": "senalflow-funnel" }
+  },
+  "reminders": { "useDefault": false, "overrides": [{ "method": "popup", "minutes": 60 }] }
+}
+```
+
+`extendedProperties.private.leadId` is the join key back to your CRM record. Set it at creation — you cannot reconstruct it later.
+
+**3. Update/cancel — `events.patch`** (technician reschedules, customer cancels).
+
+**4. Nothing else.** No polling loop, no watch channel.
+
+### 8.3 Replace client-side slot generation entirely
+
+Today `generateSlots()` invents slots from `daysAhead: 5`, a fixed `times[]` array and `skipWeekends` [VERIFIED: `pdrFunnel.js`]. Replace with server-side generation: **(service windows from config) − (freeBusy busy intervals) − (buffer + minimum lead time)**.
+
+New config block (retire `booking.daysAhead` / `booking.times` / `booking.skipWeekends`):
+
+```json
+"booking": {
+  "calendarId": "abc123@group.calendar.google.com",
+  "timezone": "America/Chicago",
+  "durationMinutes": { "default": 45, "multiDent": 90, "large": 120 },
+  "bufferMinutes": 30,
+  "minLeadTimeHours": 12,
+  "maxDaysAhead": 14,
+  "slotsToShow": 6,
+  "weeklyWindows": {
+    "mon": [["09:00", "17:00"]], "tue": [["09:00", "17:00"]],
+    "wed": [["09:00", "17:00"]], "thu": [["09:00", "17:00"]],
+    "fri": [["09:00", "17:00"]], "sat": [["09:00", "13:00"]], "sun": []
+  }
+}
+```
+
+Two behaviour changes worth making in the same edit:
+- **Widen the window** from 5 to `maxDaysAhead: 14`, but show only the **next ~6 available slots.** Five days plus four fixed times is a near-empty calendar in a shop that's actually busy — you'd suppress bookings on your best days.
+- **Duration is job-dependent.** A single door ding and a four-panel job do not take the same time; if the tech's calendar says 45 minutes for a 2-hour job, the *calendar* becomes the thing that breaks, and then the `Schedule` event is fiction again.
+
+### 8.4 Slot locking — the calendar cannot be your lock
+
+Google Calendar has **no conditional insert / ETag precondition** for `events.insert`, so two simultaneous confirms both succeed and you double-book. The calendar is not a mutex. Use the database as the lock:
+
+```
+UNIQUE (shop_id, start_utc)  ON bookings  WHERE status <> 'cancelled'
+```
+
+Order of operations on confirm:
+1. **Insert the booking row first** — the unique constraint fails fast on a race; that's your lock. Return 409 to the loser and re-render fresh slots.
+2. Create the calendar event.
+3. If step 2 fails, **roll back the booking row** — otherwise the slot is locked in your DB and invisible in the calendar.
+4. Fire `Schedule` (CAPI + Pixel) with the shared `event_id` **only after** both 1 and 2 succeed.
+5. Send the confirmation SMS.
+
+Step 4's ordering matters: firing `Schedule` before the appointment exists is exactly the fiction this whole section exists to prevent.
+
+### 8.5 🐛 Bug found: slots are generated in the *visitor's* timezone
+
+`pdrFunnel.js` builds slots with `new Date()`, `setHours(0,0,0,0)` and `getDay()` — all **browser-local** [VERIFIED: source]. Consequences:
+
+- A visitor whose device is set to another timezone sees times that don't correspond to the shop's real hours.
+- `skipWeekends` evaluates the **visitor's** weekday, not the shop's. A Saturday-morning visitor in a Pacific timezone is a different day than the shop's day.
+- DST transitions silently shift every generated slot, because the arithmetic is done on naive local dates.
+
+**Fix:** make the whole path IANA-timezone aware end to end (`America/Chicago` for DFW). Generate slots in the **shop's** timezone, send `dateTime` with an explicit UTC offset, and never do calendar arithmetic on a bare `Date`. This is a correctness fix independent of Meta — it belongs in the same PR.
+
+**Acceptance:** set a device to `Asia/Tokyo`, load the funnel, and confirm the offered times match the shop's real clock and calendar, not Tokyo's.
+
+### 8.6 Failure modes to monitor (silent revenue loss)
+
+| Failure | Effect | Detection |
+|---|---|---|
+| Calendar un-shared / service-account key rotated | `freeBusy` → 403/404 → **zero slots shown** → funnel silently stops booking | Alert on any 403/404; page someone |
+| Availability cache empty during business hours | Same, but looks "normal" | Alert if no slots for a shop >1h in open hours |
+| `events.insert` failing | Customers told "you're booked" who aren't | Alert on insert failure rate > 0; reconcile nightly (booking rows without a calendar event) |
+| Timezone/DST drift (§8.5) | Off-by-an-hour appointments | Assert slot times land on the shop's configured grid |
+
+**Cache availability for 60–120s** (KV/Redis) and serve slots from cache — never call `freeBusy` during page render. A slow funnel loses more bookings than a slightly stale slot list.
+
+### 8.7 Write-back: CRM is the system of record, not the calendar
+
+Phase 3 (§9) needs *attended* / *no-show* / *closed*. Do **not** try to infer this from calendar events:
+
+- A technician editing an event title to "DONE" is not a data contract, and it will break the first week someone is busy.
+- `events.watch` costs you channel-renewal infrastructure for zero additional signal.
+
+Instead: ops marks the outcome in the **CRM** (one tap: Attended / No-show / Closed + invoice amount). The CRM then fires the offline conversion (§9). The calendar keeps doing what it's good at — availability and technician visibility — and `extendedProperties.private.leadId` remains the join key if you ever need to reconcile.
+
+### 8.8 When there are no slots: fall back to the callback route, never to a dead end
+
+If the next 14 days have no open slot, show the callback route copy instead of an empty calendar:
+
+> *"Nothing open in the next two weeks — leave your number and a tech will call you with a real time."*
+
+Under Option A that still fires `Schedule` with `schedule_type: tech_callback` and a value, so the click converts instead of evaporating, and the high-value lane keeps its volume. An empty calendar is a **conversion killer** — a booked-out shop is the most likely shop to hit it.
+
+### 8.9 Reminders — the cheapest ROAS improvement available
+
+Send SMS reminder at **24h** and **2h** before the appointment (same provider as the confirmation). No-shows are the largest single leak between "booked" and "revenue," and they cost nothing in media spend to fix. Track show-rate by reminder-touch count.
+
+### 8.10 Additional acceptance tests
+
+| # | Test | Pass condition |
+|---|---|---|
+| 12 | Timezone | Device set to `Asia/Tokyo` → offered slots match the shop's real clock/hours |
+| 13 | DST boundary | Slots spanning the 1 Nov 2026 CST transition are correct in `America/Chicago` |
+| 14 | Race | Two simultaneous confirms on one slot → exactly one succeeds (409 to the loser), one calendar event, one `Schedule` conversion |
+| 15 | Insert failure | Simulated calendar failure → booking row rolled back, no `Schedule` fired, customer sees an error not a false confirmation |
+| 16 | Revoked access | Calendar sharing removed → alert fires; funnel degrades to the callback route |
+| 17 | Cache | Slots render from cache; `freeBusy` is not called on every page load |
+| 18 | Join key | `extendedProperties.private.leadId` present on every created event |
+
 ---
 
 ## 9. Offline conversion loop (Phase 3 — plan now, ship later)
@@ -355,6 +512,10 @@ Match on `fbc` + hashed `em`/`ph` where available — this is why §2 exists. Up
 - [ ] Graph API version pinned and documented
 - [ ] `leadWebhookUrl` set (currently `null`)
 - [ ] `simulateTextDelivery: false` (currently `true`)
+- [ ] `GOOGLE_SA_KEY_JSON` — service-account key, **server env only**
+- [ ] Shop calendar shared to the service-account email with *Make changes to events*
+- [ ] `booking` config block rolled out (timezone / durationMinutes / buffer / minLeadTime / maxDaysAhead / weeklyWindows)
+- [ ] Availability cache (60–120s TTL) + 403/404 alerting wired (§8.6)
 - [ ] `pricing.callbackEstimate` added (§5)
 - [ ] `serviceArea.zipPrefixes` populated and reconciled with ad-account geo
 - [ ] `routing.highValueSizeTiers` confirmed per shop
@@ -390,7 +551,7 @@ Match on `fbc` + hashed `em`/`ph` where available — this is why §2 exists. Up
 
 | # | Decision | Blocks |
 |---|---|---|
-| 1 | Which system holds real availability? (Google Calendar / Calendly / CRM) | §8 — and therefore the campaign |
+| 1 | ✅ **DECIDED — Google Calendar** (service account + calendar sharing) | §8 — integration contract complete |
 | 2 | Pixel/dataset ownership: agency BM vs client ad account | §11 |
 | 3 | `callbackEstimate` value + written callback SLA | §5 — Option A is unusable without it |
 | 4 | Insurance question on/off | Lead funding mix, routing tiers |
