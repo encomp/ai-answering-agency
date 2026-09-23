@@ -5,6 +5,9 @@
 **Date:** 2026-09-23 · **Advertiser context:** US PDR shops, DFW-first.
 **Tags:** `[VERIFIED]` read from source this run · `[ESTIMATE]` reasoning from comparable data · `[UNVERIFIED]` could not check (method given).
 
+**Decision log:**
+- **2026-09-23 — Optimization event = Option A (commitment event).** `Schedule` fires on *both* funnel exits — the online calendar booking **and** the tech-callback request — value-weighted. Option B (calendar-only) rejected: it structurally excludes the funnel's $600–$2,016 jobs (§2.1). Option C (`Lead`) is retained as the Phase-1 volume ramp only (§4.3). Build contract: `docs/meta-ads-implementation-spec-pdr-funnel.md`.
+
 ---
 
 ## 0. Executive summary — the five things that decide this campaign
@@ -93,7 +96,7 @@ If the client's out-of-pocket is ~$2,500/mo (~$580/wk), then **optimizing for `S
 
 Fixes, pick one deliberately:
 
-**Option A — Optimize on a "commitment" event (recommended).**
+**Option A — Optimize on a "commitment" event. ✅ DECIDED 2026-09-23.**
 Fire `Schedule` on **both** Exit A (calendar booked) and Exit B (tech callback requested), differentiated by a parameter (`schedule_type: "onsite_booking"` vs `"tech_callback"`). Both are genuine commitments — the customer has given contact details and agreed to a time or a call. You then pass `value` = estimated quote so Meta chases dollars, not volume.
 
 - ✅ Volume roughly doubles → learning phase reachable.
@@ -107,7 +110,9 @@ Cleanest semantics, lowest volume, and you accept that Meta will systematically 
 **Option C — Optimize on `Lead`, value-weighted.**
 Highest volume, fastest learning, no commitment filter. You get tire-kickers, but with `value` passed the algorithm still skews toward bigger estimates. Good Phase-1 default.
 
-**Recommendation: Phase 1 = Option C (`Lead` + value). Phase 2 = Option A (`Schedule` + value). Use Option B only if the shop insists on literal online bookings being the KPI.**
+**DECIDED: Option A.** Phase 1 = `Lead` + value (volume ramp to exit learning). Phase 2 = `Schedule` commitment event + value — permanently, not as a test. Option B rejected (§2.1). Option C is not an alternative to A; it is the on-ramp to it.
+
+**⚠️ Consequence of this decision (build dependency):** the callback route currently produces **no computed quote** — the engine returns `routeToCallback: true` and the price is `undefined` [VERIFIED: `pdrQuoteEngine`]. Option A is unusable until the callback route carries a `value`. See `docs/meta-ads-implementation-spec-pdr-funnel.md` §5 for the required config addition.
 
 ### 2.1 How the optimization event changes what Meta actually buys
 
@@ -152,7 +157,7 @@ Browser events (Pixel) **and** mirrored server events (CAPI) with a shared `even
 | 3 | Steps 4–5 complete (in-area) | custom `QualifiedStart` | Distinguishes "bounced" from "qualified then abandoned" |
 | 4 | **Step 6 submit, precise route** | **`Lead`** | `value` = quote midpoint, `currency` USD, `content_category` = sizeTier |
 | 5 | **Slot selected & confirmed** | **`Schedule`** | `value` = quote midpoint, `schedule_type: onsite_booking` |
-| 6 | **Callback route confirmed** | **`Schedule`** *(Option A)* or `Contact` *(Option B)* | `value` = high-value estimate, `schedule_type: tech_callback` |
+| 6 | **Callback route confirmed** | **`Schedule`** ✅ decided | `value` = high-value estimate (must be configured — see spec §5), `schedule_type: tech_callback` |
 | 7 | Out-of-area rejection | custom `OutOfArea` | **Never optimize on it** — but track it; it's your geo-targeting error meter |
 | 8 | Estimate viewed, no contact | custom `EstimateView` | Mid-funnel signal; best retargeting audience you have |
 
@@ -215,7 +220,7 @@ Instant forms are a legitimate **secondary** arm to test volume and offer/creati
 |---|---|---|---|---|
 | 1–3 | **Blockers** | — | $0 | Pixel + CAPI fire, calendar holds real slots, webhook → CRM verified |
 | 4–10 | **Learn** | Sales, optimize `Lead` (value passed) | $30–$50 | CPL, step-6 completion rate, `value` distribution |
-| 11–21 | **Qualify** | Flip to `Schedule` (commitment event, Option A) once `Lead` ≥ 50/wk | $50–$80 | Cost per booking, % high-value tier, callback SLA |
+| 11–21 | **Qualify** | Flip to **`Schedule` commitment event** (locked) once `Lead` ≥ 50/wk | $50–$80 | Cost per booking, % high-value tier, **callback SLA** |
 | 22–30 | **Value** | Switch bidding to maximize **value**; build lookalikes from high-value leads | $80–$150 | Cost per $1,000 of quoted value; cost per booked appointment |
 | 31+ | **Offline loop** | Upload attended/closed jobs with real invoice value | scale winners | Cost per closed job, ROAS on cash collected |
 
@@ -349,7 +354,7 @@ Look at exactly six numbers, in this order:
 
 ## 10. Decisions I need from you before implementation
 
-1. **Commitment definition:** do we count a *tech callback request* as a booking-equivalent conversion (Option A — recommended, unlocks volume + high-value) or is the KPI strictly the online calendar booking (Option B)?
+1. ✅ **DECIDED — Option A:** `Schedule` fires on both exits (calendar booking + tech-callback request), value-weighted. Consequence: the callback route is now a **media dependency**, not an ops detail — a written call-back SLA is a launch gate, not a nicety.
 2. **Real calendar:** which system holds the shop's real availability? (Determines whether the `Schedule` event can be honest.)
 3. **Client vs agency pixel/dataset ownership** for the first pilot.
 4. **Insurance question on or off** — it changes routing tiers and lead economics.
