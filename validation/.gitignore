@@ -1,0 +1,6 @@
+# Scraped business data — contains phone numbers/addresses (PII); never commit
+data/validation/
+
+# Python bytecode
+__pycache__/
+*.pyc

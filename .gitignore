@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+*.pyc
+
+# Scraped validation data (PII: phone numbers, addresses)
+validation/data/
