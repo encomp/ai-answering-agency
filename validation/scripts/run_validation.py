@@ -228,7 +228,8 @@ def _warn_if_capped(csv_path: str, cap: int, unit: str):
     if not p.exists():
         return
     with open(p, newline="", encoding="utf-8") as f:
-        row_count = sum(1 for _ in f) - 1  # minus header
+        reader = csv.DictReader(f)
+        row_count = sum(1 for _ in reader)
     if row_count >= cap:
         print(f"  ⚠️  {row_count} {unit} returned (== cap {cap}) — true count may be HIGHER; this is a FLOOR")
 

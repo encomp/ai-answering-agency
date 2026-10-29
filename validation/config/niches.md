@@ -152,6 +152,52 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] pending exe
 
 ---
 
+## Niche D: Commercial Window Cleaning
+
+### Step 1 — Google Maps Directory Count (Apify)
+**Goal:** count scrape-able commercial window cleaning companies in launch metros.
+**Queries:**
+- `commercial window cleaning`
+- `window cleaning service`
+- `high rise window cleaning`
+- `storefront window cleaning`
+
+**Launch metros (priority order):**
+1. Dallas, TX
+2. Houston, TX
+3. Chicago, IL
+4. Phoenix, AZ
+5. Denver, CO
+
+**Deliverable:** total company count per metro; deduplicated CSV under `data/validation/window-cleaning/`.
+
+**Success criteria:** ≥200 companies across top 3 metros = TAM validated.
+
+---
+
+### Step 2 — Veriphone Textability Sample
+**Goal:** determine % mobile phone numbers among window cleaners.
+**Sample size:** 150 leads (round-robin across metros).
+**Deliverable:** textability % overall.
+
+**Success criteria:** ≥50% mobile = SMS viable.
+
+---
+
+### Step 3 — Meta Ads Library Probe
+**Goal:** assess ad competition.
+**Search terms:**
+- `commercial window cleaning`
+- `window cleaning service`
+- `high rise window cleaning`
+- `storefront window cleaning`
+
+**Deliverable:** advertiser list + run-date histogram.
+
+**Success criteria:** ≤3 dedicated window-cleaning agencies in Meta = under-digitized confirmed.
+
+---
+
 ## Scoring Matrix
 
 | Criterion | Weight | Fence | Machinery Repair | Kitchen Equip Repair |
