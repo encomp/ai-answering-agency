@@ -13,17 +13,17 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] pending.
 
 | Metro | Unique contractors |
 |---|---|
-| Houston, TX | 413 |
+| Houston, TX | 498 |
 | Dallas, TX | 381 |
 | Chicago, IL | 349 |
 | Phoenix, AZ | 346 |
 | Denver, CO | 310 |
 
-**Totals:** 3,239 raw rows → **1,799 unique contractors** across 5 metros (placeId-deduped).
+**Totals:** 3,405 raw rows → **1,884 unique contractors** across 5 metros (placeId-deduped).
 
-**Verdict:** ✅ TAM validated. Success criteria was ≥500 contractors across top 3 metros — we have **1,143** across the top 3 (Houston 413 + Dallas 381 + Chicago 349). Density is strong and evenly distributed.
+**Verdict:** ✅ TAM validated. Success criteria was ≥500 contractors across top 3 metros — we have **1,228** across the top 3 (Houston 498 + Dallas 381 + Chicago 349). Density is strong and evenly distributed.
 
-*Note: `Houston | privacy fence` combo timed out 3× (Apify actor latency on that specific term) — 1 of 16 combos missing, covered by the 3 other Houston queries.*
+*All 16 GMaps query×metro combos completed. The Houston `privacy fence` combo (166 results) was recovered via the async fallback path after the sync endpoint timed out.*
 
 ---
 
