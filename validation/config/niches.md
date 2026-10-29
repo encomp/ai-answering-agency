@@ -68,10 +68,11 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] pending exe
 
 **Launch metros (priority order):**
 1. Chicago, IL
-2. Dallas-Fort Worth, TX
-3. Houston, TX
-4. Minneapolis, MN
-5. Phoenix, AZ
+2. Dallas, TX
+3. Fort Worth, TX
+4. Houston, TX
+5. Minneapolis, MN
+6. Phoenix, AZ
 
 **Deliverable:** total contractor count per metro; deduplicated CSV to `/Users/edgarrico/ai-answering-agency/data/machinery-repair-<metro>.csv`.
 
@@ -114,11 +115,12 @@ Tags: [VERIFIED] live source · [ESTIMATE] reasoning · [UNVERIFIED] pending exe
 - `commercial refrigeration repair`
 
 **Launch metros (priority order):**
-1. Dallas-Fort Worth, TX
-2. Houston, TX
-3. Chicago, IL
-4. Los Angeles, CA
-5. Atlanta, GA
+1. Dallas, TX
+2. Fort Worth, TX
+3. Houston, TX
+4. Chicago, IL
+5. Los Angeles, CA
+6. Atlanta, GA
 
 **Deliverable:** total contractor count per metro; deduplicated CSV to `/Users/edgarrico/ai-answering-agency/data/kitchen-equip-repair-<metro>.csv`.
 

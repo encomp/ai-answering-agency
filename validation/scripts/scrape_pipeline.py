@@ -83,7 +83,8 @@ def run_apify_actor(input_path: str, output_path: str, actor_id: str) -> str:
         "Content-Type": "application/json",
     }
 
-    # Try sync endpoint first
+    # Try sync endpoint first; on ANY failure (timeout, 4xx/5xx, connection error)
+    # fall back to the async start/poll/fetch flow rather than giving up.
     actor_path = actor_id.replace("/", "~")
     sync_url = f"https://api.apify.com/v2/acts/{actor_path}/run-sync-get-dataset-items?token={api_key}"
     print(f"Calling Apify sync endpoint for {actor_id}...")
@@ -92,7 +93,15 @@ def run_apify_actor(input_path: str, output_path: str, actor_id: str) -> str:
         import requests
         return requests.post(sync_url, json=actor_input, headers=headers, timeout=120)
 
-    resp = retry_request(sync_call)
+    resp = None
+    try:
+        resp = retry_request(sync_call)
+    except Exception as exc:
+        print(f"Sync endpoint failed ({exc}); falling back to async...")
+        items = _apify_async_fallback(actor_id, actor_input, api_key, headers)
+        _write_csv(items, output_path)
+        print(f"Apify actor {actor_id} returned {len(items)} results (async)")
+        return output_path
 
     if resp.status_code in (408, 409):
         print(f"Sync endpoint returned {resp.status_code}, falling back to async...")

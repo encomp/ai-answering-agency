@@ -21,8 +21,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from scripts.scrape_pipeline import run_apify_actor, load_sample  # type: ignore
-from scripts.enrich_leads import enrich_leads  # type: ignore
+from scripts.scrape_pipeline import run_apify_actor  # type: ignore
 
 
 def ensure_dirs(niche: str):
@@ -53,6 +52,7 @@ def step_gmaps(niche: str, metro: str, query: str, max_results: int = 200):
     write_json_input(inp_json, payload)
     print(f"Running gmaps step: {query} in {metro}")
     run_apify_actor(inp_json, out_csv, "compass/crawler-google-places")
+    _warn_if_capped(out_csv, max_results, "places")
     return out_csv
 
 
@@ -71,9 +71,12 @@ def step_veriphone(input_glob: str, output_csv: str, sample: int = 150):
         print(f"No input CSVs match: {input_glob}")
         return
 
+    # Read all files, dedupe by normalized phone, then round-robin across
+    # files so the sample is metro-balanced (not biased to alphabetically-first CSV).
     seen = set()
-    rows = []
+    per_file_rows = []
     for fp in files:
+        file_rows = []
         with open(fp, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -84,13 +87,22 @@ def step_veriphone(input_glob: str, output_csv: str, sample: int = 150):
                 if norm in seen:
                     continue
                 seen.add(norm)
-                rows.append(row)
+                file_rows.append(row)
+        per_file_rows.append(file_rows)
+
+    # Round-robin: take one from each file until we hit the sample size.
+    rows = []
+    max_len = max((len(r) for r in per_file_rows), default=0)
+    for i in range(max_len):
+        for file_rows in per_file_rows:
+            if i < len(file_rows):
+                rows.append(file_rows[i])
                 if len(rows) >= sample:
                     break
         if len(rows) >= sample:
             break
 
-    print(f"Veriphone: sampling {len(rows)} leads...")
+    print(f"Veriphone: sampling {len(rows)} leads (round-robin across {len(files)} files)...")
     mobile = landline = voip = invalid = 0
     fieldnames = None
     out_rows = []
@@ -188,7 +200,7 @@ def _veriphone_lookup(phone: str, api_key: str) -> dict:
     return {}
 
 
-def step_meta(niche: str, query: str, days: int = 30, media_type: str = "all"):
+def step_meta(niche: str, query: str, days: int = 30, media_type: str = "all", max_ads: int = 100):
     """Run Meta Ads Library scrape for one query."""
     ensure_dirs(niche)
     query_slug = query.replace(" ", "-")
@@ -201,12 +213,24 @@ def step_meta(niche: str, query: str, days: int = 30, media_type: str = "all"):
         "activeStatus": "active",
         "mediaType": media_type,
         "onlyAdsNewerThan": f"{days} days",
-        "maxAds": 100,
+        "maxAds": max_ads,
     }
     write_json_input(inp_json, payload)
     print(f"Running meta ads step: {query}")
     run_apify_actor(inp_json, out_csv, "automation-lab/facebook-ads-library")
+    _warn_if_capped(out_csv, max_ads, "ads")
     return out_csv
+
+
+def _warn_if_capped(csv_path: str, cap: int, unit: str):
+    """If the CSV row count equals the cap, the true count may exceed it (floor)."""
+    p = Path(csv_path)
+    if not p.exists():
+        return
+    with open(p, newline="", encoding="utf-8") as f:
+        row_count = sum(1 for _ in f) - 1  # minus header
+    if row_count >= cap:
+        print(f"  ⚠️  {row_count} {unit} returned (== cap {cap}) — true count may be HIGHER; this is a FLOOR")
 
 
 def load_env_from_home():
@@ -239,6 +263,10 @@ def main():
     parser.add_argument("--sample", type=int, default=150, help="Sample size for veriphone step")
     parser.add_argument("--days", type=int, default=30, help="Date range for meta step")
     parser.add_argument("--media-type", default="all", help="Media type for meta step")
+    parser.add_argument("--max-results", type=int, default=200,
+                        help="GMaps: max places per search (default 200; hitting this cap means count is a FLOOR)")
+    parser.add_argument("--max-ads", type=int, default=100,
+                        help="Meta Ads: max ads per query (default 100; actor allows up to 500)")
     args = parser.parse_args()
 
     if args.step == "gmaps" and (not args.metro or not args.query):
@@ -249,11 +277,11 @@ def main():
         parser.error("--input and --output are required for veriphone step")
 
     if args.step == "gmaps":
-        step_gmaps(args.niche, args.metro, args.query)
+        step_gmaps(args.niche, args.metro, args.query, args.max_results)
     elif args.step == "veriphone":
         step_veriphone(args.input, args.output, args.sample)
     elif args.step == "meta":
-        step_meta(args.niche, args.query, args.days, args.media_type)
+        step_meta(args.niche, args.query, args.days, args.media_type, args.max_ads)
 
 
 if __name__ == "__main__":
